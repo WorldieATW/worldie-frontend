@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { RegisterInterface } from './interface'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { useAuthContext } from '@contexts'
 
 export const RegisterModule = () => {
   const [email, setEmail] = useState<string>('')
@@ -12,6 +13,7 @@ export const RegisterModule = () => {
   const [confirmationPassword, setConfirmationPassword] = useState<string>('')
   const { api, loading } = useApi()
   const router = useRouter()
+  const { refresh } = useAuthContext()
 
   const handleLogin = async () => {
     if (!email || !nama || !role || !confirmationPassword || !password) {
@@ -36,12 +38,13 @@ export const RegisterModule = () => {
     )
 
     if (response) {
+      refresh()
       localStorage.setItem(
         process.env.NEXT_PUBLIC_TOKEN_NAME as string,
         response.accessToken
       )
       toast.success('Register sukses!')
-      router.push('/')
+      router.push('/protected')
     } else {
       const statusCode = error?.statusCode
       const message = error?.message

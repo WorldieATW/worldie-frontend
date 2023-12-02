@@ -5,12 +5,16 @@ import toast from 'react-hot-toast'
 
 export const usePageGuard = () => {
   const router = useRouter()
-  const { isAuthenticated } = useAuthContext()
+  const { refresh } = useAuthContext()
 
-  useEffect(() => {
-    if (!isAuthenticated) {
+  const check = async () => {
+    if (!(await refresh())) {
       toast.error('Please login first')
       router.push('/login')
     }
-  }, [isAuthenticated])
+  }
+
+  useEffect(() => {
+    check()
+  }, [])
 }

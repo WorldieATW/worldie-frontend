@@ -1,9 +1,9 @@
 import React from 'react'
 
 export interface AuthContextProps {
-  isAuthenticated: boolean
   user?: User
-  refresh: () => void
+  isAuthenticated: boolean
+  refresh: () => Promise<User | undefined>
 }
 
 export type User = {

@@ -3,12 +3,14 @@ import { useState } from 'react'
 import { LoginInterface } from './interface'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
+import { useAuthContext } from '@contexts'
 
 export const LoginModule = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const { api, loading } = useApi()
   const router = useRouter()
+  const { refresh } = useAuthContext()
 
   const handleLogin = async () => {
     const { response, error } = await api.post<LoginInterface>('/auth/login', {
@@ -17,12 +19,13 @@ export const LoginModule = () => {
     })
 
     if (response) {
+      refresh()
       localStorage.setItem(
         process.env.NEXT_PUBLIC_TOKEN_NAME as string,
         response.accessToken
       )
       toast.success('Login sukses!')
-      router.push('/')
+      router.push('/protected')
     } else {
       const statusCode = error?.statusCode
       if (statusCode === 401 || statusCode === 400) {

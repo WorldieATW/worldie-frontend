@@ -24,11 +24,10 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     if (response) {
       setIsAuthenticated(true)
       setUser(response.user)
+      return response.user
     } else {
-      console.log('hello?')
       setIsAuthenticated(false)
       setUser(undefined)
-      localStorage.removeItem(process.env.NEXT_PUBLIC_TOKEN_NAME as string)
     }
   }
 
