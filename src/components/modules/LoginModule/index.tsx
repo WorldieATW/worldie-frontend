@@ -15,6 +15,7 @@ export const LoginModule = () => {
       email,
       password,
     })
+
     if (response) {
       localStorage.setItem(
         process.env.NEXT_PUBLIC_TOKEN_NAME as string,
@@ -25,7 +26,6 @@ export const LoginModule = () => {
     } else {
       const statusCode = error?.statusCode
       if (statusCode === 401 || statusCode === 400) {
-        console.log('hey')
         toast.error('Email atau password salah')
       } else {
         toast.error('Maaf, telah terjadi kesalahan')
