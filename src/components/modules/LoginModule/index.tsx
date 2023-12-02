@@ -13,7 +13,7 @@ export const LoginModule = () => {
   const { refresh } = useAuthContext()
 
   const handleLogin = async () => {
-    const { response, error } = await api.post<LoginInterface>('/auth/login', {
+    const { response, error } = await api.post<LoginInterface>('auth/login', {
       email,
       password,
     })

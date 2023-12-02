@@ -19,7 +19,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   const [user, setUser] = useState<User | undefined>(undefined)
 
   const refresh = async () => {
-    const { response } = await api.get<GetRefreshInterface>('/auth/refresh')
+    const { response } = await api.get<GetRefreshInterface>('auth/refresh')
 
     if (response) {
       setIsAuthenticated(true)

@@ -17,7 +17,7 @@ export function useApi() {
     try {
       const { data } = await axios({
         method,
-        url: `${BASE_URL}${url}`,
+        url: `${BASE_URL}/${url}`,
         data: body,
         withCredentials: true,
         headers: {

@@ -27,7 +27,7 @@ export const RegisterModule = () => {
     }
 
     const { response, error } = await api.post<RegisterInterface>(
-      '/auth/registration',
+      'auth/registration',
       {
         email,
         nama,
