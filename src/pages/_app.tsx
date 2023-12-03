@@ -1,19 +1,22 @@
 import '../styles/globals.css'
-import { Header } from '@elements'
-import { LayoutModule } from '@modules'
+import { AuthContextProvider } from '@contexts'
+import { Header, Navbar } from '@elements'
 import type { AppProps } from 'next/app'
+import { Toaster } from 'react-hot-toast'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Header />
-      <LayoutModule>
+      <AuthContextProvider>
+        <Navbar />
         <main className="w-full min-h-screen ">
           <section className="max-w-[1440px] flex mx-auto">
             <Component {...pageProps} />
           </section>
         </main>
-      </LayoutModule>
+        <Toaster />
+      </AuthContextProvider>
     </>
   )
 }

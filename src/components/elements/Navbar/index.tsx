@@ -4,15 +4,16 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 
 export const Navbar = () => {
-  const { isAuthenticated, refresh } = useAuthContext()
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuthContext()
   const router = useRouter()
 
   const handleLogout = async () => {
     localStorage.removeItem(process.env.NEXT_PUBLIC_TOKEN_NAME as string)
-    refresh()
+
+    setIsAuthenticated(false)
+    setUser(undefined)
 
     toast.success('Logout sukses!')
-
     if (router.asPath === '/') router.reload()
     else router.push('/')
   }

@@ -18,7 +18,6 @@
       "@contexts": ["src/components/contexts"],
       "@elements": ["src/components/elements"],
       "@modules": ["src/components/modules"],
-      "@hooks": ["src/components/hooks"],
       "@utils": ["src/components/utils"]
     }
   },

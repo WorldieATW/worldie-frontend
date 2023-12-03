@@ -1,9 +1,9 @@
-import { useApi } from '@hooks'
 import { useState } from 'react'
 import { RegisterInterface } from './interface'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/navigation'
 import { useAuthContext } from '@contexts'
+import { parseJwt } from '@utils'
 
 export const RegisterModule = () => {
   const [email, setEmail] = useState<string>('')
@@ -11,11 +11,10 @@ export const RegisterModule = () => {
   const [password, setPassword] = useState<string>('')
   const [role, setRole] = useState<string>('')
   const [confirmationPassword, setConfirmationPassword] = useState<string>('')
-  const { api, loading } = useApi()
   const router = useRouter()
-  const { refresh } = useAuthContext()
+  const { httpFetch, setIsAuthenticated, setUser, isLoading } = useAuthContext()
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     if (!email || !nama || !role || !confirmationPassword || !password) {
       toast.error('Isi semua fields')
       return
@@ -26,23 +25,30 @@ export const RegisterModule = () => {
       return
     }
 
-    const { response, error } = await api.post<RegisterInterface>(
-      'auth/registration',
-      {
+    const { response, error } = await httpFetch<RegisterInterface>({
+      method: 'post',
+      url: 'auth/registration',
+      isAuthorized: false,
+      body: {
         email,
         nama,
         role,
         password,
         confirmationPassword,
-      }
-    )
+      },
+    })
 
     if (response) {
-      refresh()
+      const { accessToken } = response
       localStorage.setItem(
         process.env.NEXT_PUBLIC_TOKEN_NAME as string,
-        response.accessToken
+        accessToken
       )
+
+      const { key } = parseJwt(accessToken)
+      setIsAuthenticated(true)
+      setUser(key)
+
       toast.success('Register sukses!')
       router.push('/protected')
     } else {
@@ -101,7 +107,11 @@ export const RegisterModule = () => {
         value={confirmationPassword}
         onChange={(e) => setConfirmationPassword(e.target.value)}
       />
-      <button className="bg-blue-500" onClick={handleLogin} disabled={loading}>
+      <button
+        className="bg-blue-500"
+        onClick={handleRegister}
+        disabled={isLoading}
+      >
         Login
       </button>
     </section>
