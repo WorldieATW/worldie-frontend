@@ -23,7 +23,7 @@ export const refresh = async ({
         url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
         headers: {
           authorization: `Bearer ${token}`,
-          contentTyp: 'application/x-www-form-urlencoded'
+          contentTyp: 'application/x-www-form-urlencoded',
         },
       })
 

@@ -83,7 +83,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 
   useEffect(() => {
     getUser()
-  },[])
+  }, [])
 
   const contextValue = {
     isAuthenticated,
