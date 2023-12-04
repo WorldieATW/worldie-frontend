@@ -1,1 +1,2 @@
-export * from './'
+export * from './LeftSidebar'
+export * from './RightSidebar'

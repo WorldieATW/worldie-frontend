@@ -1,14 +1,14 @@
-import React from 'react'
-// import {HeroSection, FAQSection} from './sections
-// import {} from './module-elements'
+import React, { ComponentPropsWithoutRef } from 'react'
+import { LeftSidebar, RightSidebar } from './module-elements'
 
-export const LayoutModule: React.FC = () => {
-  // TODO: Write module's logic
-
+export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
+  children,
+}) => {
   return (
-    <>
-      {/* <HeroSection></HeroSection> */}
-      {/* <FAQSection></FAQSection> */}
-    </>
+    <main className="flex bg-white">
+      <LeftSidebar />
+      <main>{children}</main>
+      <RightSidebar />
+    </main>
   )
 }
