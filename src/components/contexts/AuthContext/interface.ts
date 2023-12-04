@@ -17,11 +17,6 @@ export type User = {
 
 export type UserRole = 'TRAVELER' | 'AGEN' | 'ADMIN'
 
-export interface GetRefreshInterface {
-  accessToken: string
-  user: User
-}
-
 export interface AuthContextProviderProps {
   children?: React.ReactNode
 }
