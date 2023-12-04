@@ -19,7 +19,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="flex justify-between w-full bg-red-600">
+    <div className="flex font-paytone justify-between w-full bg-royal">
       <span>Worldie Navbarnya Keren Banget</span>
       {isAuthenticated && (
         <button className="bg-purple-500" onClick={handleLogout}>
