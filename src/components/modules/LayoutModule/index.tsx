@@ -5,7 +5,7 @@ export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
   children,
 }) => {
   return (
-    <main className="flex bg-white">
+    <main className="flex justify-between bg-white">
       <LeftSidebar />
       <main>{children}</main>
       <RightSidebar />
