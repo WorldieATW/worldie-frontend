@@ -31,7 +31,6 @@ export const LeftSidebar: React.FC = () => {
         )
       }
     }
-
     return (
       <LeftSideBarContent
         link=""

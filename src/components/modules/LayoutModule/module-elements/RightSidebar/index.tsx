@@ -1,7 +1,33 @@
+import { useAuthContext } from '@contexts'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { WiStars } from 'react-icons/wi'
+import { TopDestinasiWisata, TopDestinasiWisataProps } from './interface'
+import { Trending } from './Trending'
 
 export const RightSidebar: React.FC = () => {
+  const { httpFetch } = useAuthContext()
+  const [topDestinasiWisata, setTopDestinasiWisata] = useState<
+    TopDestinasiWisata[]
+  >([])
+
+  const fetchData = async () => {
+    const { response, error } = await httpFetch<TopDestinasiWisataProps>({
+      method: 'get',
+      url: 'aset-usaha/top',
+    })
+
+    if (error) {
+      console.error('Error fetching data:', error)
+    } else {
+      setTopDestinasiWisata(response?.topDestinasiWisata || [])
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <aside className="font-poppins text-black p-10 flex-shrink-0 bg-white h-screen border border-l-black/10">
       <div className="w-56 bg-grayjoy/10 rounded-xl flex-col items-center gap-2 shadow">
@@ -11,34 +37,15 @@ export const RightSidebar: React.FC = () => {
         </div>
 
         <div className="font-poppins flex flex-col py-1">
-          <div className="flex flex-col gap-y-1 border-b border-b-black/5 py-2">
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              1. Trending
-            </span>
-            <span className="px-4 font-bold">#Kubah Mas</span>
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              999 Reviews
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-y-1 border-b border-b-black/5 py-2">
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              2. Trending
-            </span>
-            <span className="px-4 font-bold">#Kubah Mas</span>
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              999 Reviews
-            </span>
-          </div>
-
-          <div className="flex flex-col gap-y-1 border-b border-b-black/5 py-2">
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              3. Trending
-            </span>
-            <span className="px-4 font-bold">#Kubah Mas</span>
-            <span className="px-4 text-sm text-opacity-70 text-grayjoy">
-              999 Reviews
-            </span>
+          <div className="font-poppins flex flex-col py-1">
+            {topDestinasiWisata.map((destinasi, index) => (
+              <Trending
+                key={destinasi.id}
+                num={index}
+                count={destinasi._count.daftarReview}
+                nama={destinasi.nama}
+              />
+            ))}
           </div>
         </div>
 
