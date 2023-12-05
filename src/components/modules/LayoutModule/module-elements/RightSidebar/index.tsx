@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { WiStars } from 'react-icons/wi'
 
 export const RightSidebar: React.FC = () => {
-
   return (
     <aside className="font-poppins text-black p-10 flex-shrink-0 bg-white h-screen border border-l-black/10">
       <div className="w-56 bg-grayjoy/10 rounded-xl flex-col items-center gap-2 shadow">
