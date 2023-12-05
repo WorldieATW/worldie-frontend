@@ -55,7 +55,7 @@ export const LeftSidebar: React.FC = () => {
           <HiUserCircle fill="black" size={30} />
           <span>{user ? user.nama : 'Undefined'}</span>
         </div>
-        <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal"/>
+        <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal" />
       </div>
     </aside>
   )
