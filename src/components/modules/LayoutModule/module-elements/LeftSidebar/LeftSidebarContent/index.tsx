@@ -20,7 +20,7 @@ export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
       {React.cloneElement(icon, {
         className: hover ? 'fill-royal stroke-royal' : '',
       })}
-      <p>{text}</p>
+      <span>{text}</span>
     </Link>
   )
 }

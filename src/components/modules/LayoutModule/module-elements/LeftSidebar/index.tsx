@@ -7,6 +7,7 @@ import { BiSolidHomeCircle } from 'react-icons/bi'
 import { LeftSideBarContent } from './LeftSidebarContent'
 import { RiHotelFill, RiUser3Fill } from 'react-icons/ri'
 import { HiMiniEllipsisHorizontal } from 'react-icons/hi2'
+import Link from 'next/link'
 
 export const LeftSidebar: React.FC = () => {
   const { user } = useAuthContext()
@@ -42,15 +43,19 @@ export const LeftSidebar: React.FC = () => {
             text="Profile"
           />
         </div>
+        <Link href="">
+          <button className="rounded-full bg-royal w-full py-2 text-white shadow hover:bg-opacity-90">
+            Post
+          </button>
+        </Link>
       </div>
 
-      <div className="flex items-center gap-x-8 bottom-10 absolute">
-        <LeftSideBarContent
-          link=""
-          icon={<HiUserCircle fill="black" size={30} />}
-          text={user ? user.nama : 'Undefined'}
-        />
-        <HiMiniEllipsisHorizontal />
+      <div className="flex items-center gap-x-12 bottom-10 absolute">
+        <div className="flex items-center gap-x-4">
+          <HiUserCircle fill="black" size={30} />
+          <span>{user ? user.nama : 'Undefined'}</span>
+        </div>
+        <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal"/>
       </div>
     </aside>
   )
