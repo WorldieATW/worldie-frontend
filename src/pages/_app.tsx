@@ -3,16 +3,25 @@ import { AuthContextProvider } from '@contexts'
 import { Header } from '@elements'
 import { LayoutModule } from '@modules'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import { Toaster } from 'react-hot-toast'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const unprotectedPages = ['/login', '/register', '/']
+  const isUnprotectedPage = unprotectedPages.includes(router.pathname)
+
   return (
     <>
       <Header />
       <AuthContextProvider>
-        <LayoutModule>
+        {isUnprotectedPage ? (
           <Component {...pageProps} />
-        </LayoutModule>
+        ) : (
+          <LayoutModule>
+            <Component {...pageProps} />
+          </LayoutModule>
+        )}
         <Toaster />
       </AuthContextProvider>
     </>
