@@ -1,18 +1,17 @@
 import Image from 'next/image'
 import { GrLocation } from 'react-icons/gr'
 import { useAuthContext } from '@contexts'
-import { HiUserCircle } from 'react-icons/hi'
 import { MdDashboard, MdDirectionsCar } from 'react-icons/md'
 import { BiSolidHomeCircle } from 'react-icons/bi'
 import { LeftSideBarContent } from './LeftSidebarContent'
 import { RiHotelFill, RiUser3Fill } from 'react-icons/ri'
-import { HiMiniEllipsisHorizontal } from 'react-icons/hi2'
 import Link from 'next/link'
+import { UserMenu } from './UserMenu'
 
 export const LeftSidebar: React.FC = () => {
   const { user } = useAuthContext()
 
-  const renderProfileContent = () => {
+  const renderProfileMenu = () => {
     if (user) {
       if (user.role === 'AGEN') {
         return (
@@ -45,7 +44,9 @@ export const LeftSidebar: React.FC = () => {
   return (
     <aside className="font-poppins text-black font-bold p-10 justify-between flex-shrink-0 bg-white h-screen border border-r-black/10">
       <div className="flex flex-col gap-y-8">
-        <Image alt="logo" src="/logo.svg" width={30} height={30} />
+        <Link href="/">
+          <Image alt="logo" src="/logo.svg" width={30} height={30} />
+        </Link>
         <div className="flex flex-col gap-y-6">
           <LeftSideBarContent
             link="/"
@@ -67,7 +68,7 @@ export const LeftSidebar: React.FC = () => {
             icon={<RiHotelFill fill="black" size={20} />}
             text="Accomodation"
           />
-          {renderProfileContent()}
+          {renderProfileMenu()}
         </div>
         <Link href="">
           <button className="rounded-full bg-royal w-full py-2 text-white shadow hover:bg-opacity-90">
@@ -76,13 +77,7 @@ export const LeftSidebar: React.FC = () => {
         </Link>
       </div>
 
-      <div className="flex justify-between items-center gap-x-4 bottom-10 absolute w-[12rem]">
-        <div className="flex items-center gap-x-4">
-          <HiUserCircle fill="black" size={30} />
-          <span>{user ? user.nama : 'Undefined'}</span>
-        </div>
-        <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal" />
-      </div>
+      {user && <UserMenu user={user} />}
     </aside>
   )
 }
