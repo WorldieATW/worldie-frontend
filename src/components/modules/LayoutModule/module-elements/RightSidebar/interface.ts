@@ -6,7 +6,6 @@ export type TopDestinasiWisata = {
   id: string
   nama: string
   _count: {
-    daftarReview: number;
-  };
+    daftarReview: number
+  }
 }
-
