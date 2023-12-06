@@ -5,6 +5,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { useAuthContext } from '@contexts'
 import { UserMenuProps } from './interface'
 import { HiMiniEllipsisHorizontal, HiUserCircle } from 'react-icons/hi2'
+import { getFirstName } from '@utils'
 
 export const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuthContext()
@@ -43,7 +44,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
       >
         <div className="flex items-center gap-x-4">
           <HiUserCircle fill="black" size={30} />
-          <span>{user ? user.nama : 'Undefined'}</span>
+          <span>{user ? getFirstName(user.nama) : 'Undefined'}</span>
         </div>
         <div>
           <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal" />
