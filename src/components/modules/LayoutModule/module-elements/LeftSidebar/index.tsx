@@ -48,7 +48,7 @@ export const LeftSidebar: React.FC = () => {
         </Link>
         <div className="flex flex-col gap-y-6">
           <LeftSideBarContent
-            link="/"
+            link="/protected"
             icon={<BiSolidHomeCircle fill="black" size={20} />}
             text="Home"
           />
