@@ -17,10 +17,13 @@ export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       href={link}
-      className={`${router.asPath === link ? 'text-royal': ''} flex items-center gap-x-4 hover:text-royal`}
+      className={`${
+        router.asPath === link ? 'text-royal' : ''
+      } flex items-center gap-x-4 hover:text-royal`}
     >
       {React.cloneElement(icon, {
-        className: router.asPath === link || hover ? ' fill-royal stroke-royal' : '',
+        className:
+          router.asPath === link || hover ? ' fill-royal stroke-royal' : '',
       })}
       <span>{text}</span>
     </Link>
