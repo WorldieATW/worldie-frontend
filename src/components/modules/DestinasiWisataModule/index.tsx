@@ -8,7 +8,7 @@ export const DestinasiWisataModule: React.FC = () => {
   const router = useRouter()
 
   return (
-    <section className="w-full px-7 flex flex-col gap-y-6">
+    <section className="w-full px-7 flex flex-col gap-y-8">
       <div className="flex items-center gap-x-4">
         <MdArrowBackIosNew
           onClick={() => router.back()}
@@ -19,7 +19,7 @@ export const DestinasiWisataModule: React.FC = () => {
         </span>
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-6">
         {asetUsaha.map((aset, index) => {
           console.log(aset)
           return (

@@ -11,7 +11,7 @@ export const LEFT_SIDE_BAR_MENUS: LeftSidebarContentProps[] = [
     text: 'Home',
   },
   {
-    link: '/',
+    link: '/tourist-attraction',
     Icon: GrLocation,
     text: 'Tourist Attraction',
   },
