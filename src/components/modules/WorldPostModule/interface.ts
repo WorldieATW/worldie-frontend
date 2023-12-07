@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export interface WorldPost {
   id: string
   konten: string
@@ -14,4 +16,11 @@ export interface GetWorldPostsResponse {
 
 export interface WorldPostCardProps {
   worldPost: WorldPost
+}
+
+export interface DeleteWorldPostModalProps {
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+  onClose: () => void
+  worldPostId: string
 }
