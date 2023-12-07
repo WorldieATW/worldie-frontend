@@ -10,7 +10,6 @@ export const DestinasiWisataModule: React.FC = () => {
 
       <div className="flex flex-wrap gap-6">
         {asetUsaha.map((aset, index) => {
-          console.log(aset)
           return (
             <AsetUsahaCard
               key={index}
@@ -19,7 +18,7 @@ export const DestinasiWisataModule: React.FC = () => {
               imgUrl={aset.imgUrl}
               provinsi={aset.alamat?.provinsi}
               negara={aset.alamat?.negara}
-              detailLink=""
+              detailLink={`/detail/${aset.id}`}
             />
           )
         })}

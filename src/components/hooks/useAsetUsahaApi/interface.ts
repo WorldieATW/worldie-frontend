@@ -4,9 +4,11 @@ export interface UseAsetUsahaApiProps {
 
 export interface AsetUsahaProps {
   allAsetUsaha: AsetUsaha[]
+  asetUsaha: AsetUsaha
 }
 
 export type AsetUsaha = {
+  id: string
   nama: string
   deskripsi: string
   harga: number
@@ -15,7 +17,7 @@ export type AsetUsaha = {
   jenisKendaraan?: string
   jenisPenginapan?: string
   alamat?: Alamat
-  review: Review[]
+  daftarReview: Review[]
 }
 
 export type Alamat = {
@@ -28,5 +30,5 @@ export type Alamat = {
 export type Review = {
   judul: string
   konten: string
-  rating: string
+  rating: number
 }

@@ -26,7 +26,6 @@ export const KendaraanModule: React.FC = () => {
 
       <div className="flex flex-wrap gap-6">
         {asetUsaha.map((aset, index) => {
-          console.log(aset)
           return (
             <AsetUsahaCard
               key={index}
@@ -34,7 +33,7 @@ export const KendaraanModule: React.FC = () => {
               harga={aset.harga}
               imgUrl={aset.imgUrl}
               jenisKendaraan={aset.jenisKendaraan}
-              detailLink=""
+              detailLink={`/detail/${aset.id}`}
             />
           )
         })}

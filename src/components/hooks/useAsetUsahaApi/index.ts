@@ -4,11 +4,13 @@ import { AsetUsaha, AsetUsahaProps } from './interface'
 
 export const useAsetUsahaApi = ({ initialTipe = '' }) => {
   const { httpFetch } = useAuthContext()
+  // const [asetUsahaId, setAsetUsahaId] = useState('')
   const [agenId, setAgenId] = useState('')
   const [tipe, setTipe] = useState(initialTipe)
   const [jenisKendaraan, setJenisKendaraan] = useState('')
   const [jenisPenginapan, setJenisPenginapan] = useState('')
   const [asetUsaha, setAsetUsaha] = useState<AsetUsaha[]>([])
+  const [asetUsahaById, setAsetUsahaById] = useState<AsetUsaha>()
 
   const fetchAllAsetUsaha = async () => {
     const filters = {
@@ -37,6 +39,19 @@ export const useAsetUsahaApi = ({ initialTipe = '' }) => {
     }
   }
 
+  const fetchAsetUsahaById = async (id: string) => {
+    const { response, error } = await httpFetch<AsetUsahaProps>({
+      method: 'get',
+      url: `aset-usaha/${id}`,
+    })
+    console.log(response?.asetUsaha)
+    if (error) {
+      console.error('Error fetching data:', error)
+    } else {
+      setAsetUsahaById(response?.asetUsaha)
+    }
+  }
+
   useEffect(() => {
     fetchAllAsetUsaha()
   }, [agenId, tipe, jenisKendaraan, jenisPenginapan])
@@ -46,6 +61,8 @@ export const useAsetUsahaApi = ({ initialTipe = '' }) => {
     setTipe,
     setJenisKendaraan,
     setJenisPenginapan,
+    fetchAsetUsahaById,
     asetUsaha,
+    asetUsahaById,
   }
 }

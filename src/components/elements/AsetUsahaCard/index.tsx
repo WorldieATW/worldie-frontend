@@ -47,7 +47,7 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
         <div className="max-h-8 text-ellipsis overflow-hidden whitespace-nowrap">
           <span className="font-bold text-black">{nama}</span>
         </div>
-        <span className="text-xs text-grayjoy italic">Rp{harga} each day</span>
+        <span className="text-xs text-grayjoy italic">Rp{harga} /day</span>
       </div>
     </Link>
   )
