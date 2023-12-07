@@ -1,20 +1,27 @@
 import '../styles/globals.css'
 import { AuthContextProvider } from '@contexts'
-import { Header, Navbar } from '@elements'
+import { Header } from '@elements'
+import { LayoutModule } from '@modules'
 import type { AppProps } from 'next/app'
+import { useRouter } from 'next/router'
 import { Toaster } from 'react-hot-toast'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const unprotectedPages = ['/login', '/register', '/']
+  const isUnprotectedPage = unprotectedPages.includes(router.pathname)
+
   return (
     <>
       <Header />
       <AuthContextProvider>
-        <Navbar />
-        <main className="w-full min-h-screen bg-white">
-          <section className="max-w-[1440px] flex mx-auto">
+        {isUnprotectedPage ? (
+          <Component {...pageProps} />
+        ) : (
+          <LayoutModule>
             <Component {...pageProps} />
-          </section>
-        </main>
+          </LayoutModule>
+        )}
         <Toaster />
       </AuthContextProvider>
     </>
