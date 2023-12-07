@@ -26,7 +26,10 @@ export const Select: React.FC<SelectProps> = ({ options, onChange }) => {
   })
 
   return (
-    <div className="relative font-poppins font-bold text-white first-letter:text-left shadow" ref={ref}>
+    <div
+      className="relative font-poppins font-bold text-white first-letter:text-left shadow"
+      ref={ref}
+    >
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="cursor-pointer rounded-lg bg-royal px-4 py-2 text-md font-bold hover:bg-opacity-90 flex items-center justify-between shadow"

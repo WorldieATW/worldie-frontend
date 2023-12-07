@@ -12,10 +12,13 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
   provinsi,
   negara,
   jenisKendaraan,
-  detailLink
+  detailLink,
 }) => {
   return (
-    <Link href={detailLink} className="w-52 h-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg">
+    <Link
+      href={detailLink}
+      className="w-52 h-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg"
+    >
       <div className="flex justify-center">
         <Image
           alt={nama}

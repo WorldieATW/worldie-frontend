@@ -19,7 +19,7 @@ export const DestinasiWisataModule: React.FC = () => {
               imgUrl={aset.imgUrl}
               provinsi={aset.alamat?.provinsi}
               negara={aset.alamat?.negara}
-              detailLink=''
+              detailLink=""
             />
           )
         })}
