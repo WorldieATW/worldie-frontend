@@ -1,3 +1,3 @@
-export const WorldPost = () => {
+export const WorldPostModule = () => {
   return <div></div>
 }
