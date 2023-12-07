@@ -36,7 +36,7 @@ export const LeftSidebar: React.FC = () => {
   return (
     <aside className="font-poppins text-black font-bold p-10 justify-between flex-shrink-0 bg-white h-screen border border-r-black/10">
       <div className="flex flex-col gap-y-8">
-        <Link href="/world-post">
+        <Link href="/home">
           <Image alt="logo" src="/logo.svg" width={30} height={30} />
         </Link>
         <div className="flex flex-col gap-y-6">

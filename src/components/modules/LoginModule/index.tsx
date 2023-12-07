@@ -34,7 +34,7 @@ export const LoginModule = () => {
       setUser(key)
 
       toast.success('Login sukses!')
-      router.push('/world-post')
+      router.push('/home')
     } else {
       const statusCode = error?.statusCode
       if (statusCode === 401 || statusCode === 400) {
