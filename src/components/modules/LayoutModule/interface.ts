@@ -11,4 +11,3 @@ export interface TrendingProps {
   count: number
   nama: string
 }
-  

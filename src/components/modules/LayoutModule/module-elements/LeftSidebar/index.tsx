@@ -30,13 +30,7 @@ export const LeftSidebar: React.FC = () => {
         )
       }
     }
-    return (
-      <LeftSideBarContent
-        link=""
-        Icon={RiUser3Fill}
-        text="Profile"
-      />
-    )
+    return <LeftSideBarContent link="" Icon={RiUser3Fill} text="Profile" />
   }
 
   return (
@@ -46,12 +40,8 @@ export const LeftSidebar: React.FC = () => {
           <Image alt="logo" src="/logo.svg" width={30} height={30} />
         </Link>
         <div className="flex flex-col gap-y-6">
-          {LEFT_SIDE_BAR_MENUS.map(({link, Icon, text}) => (
-            <LeftSideBarContent 
-              link={link}
-              Icon={Icon}
-              text={text}
-            />
+          {LEFT_SIDE_BAR_MENUS.map(({ link, Icon, text }) => (
+            <LeftSideBarContent link={link} Icon={Icon} text={text} />
           ))}
           {renderProfileMenu()}
         </div>

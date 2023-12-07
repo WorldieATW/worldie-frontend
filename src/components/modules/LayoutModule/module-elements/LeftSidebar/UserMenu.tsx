@@ -7,7 +7,8 @@ import { HiMiniEllipsisHorizontal, HiUserCircle } from 'react-icons/hi2'
 import { getFirstName } from '@utils'
 
 export const UserMenu: React.FC = () => {
-  const { isAuthenticated, setIsAuthenticated, setUser, user } = useAuthContext()
+  const { isAuthenticated, setIsAuthenticated, setUser, user } =
+    useAuthContext()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const bgColor = isOpen ? 'bg-grayjoy/20' : ''
