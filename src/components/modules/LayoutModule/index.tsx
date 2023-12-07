@@ -5,9 +5,9 @@ export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
   children,
 }) => {
   return (
-    <main className="flex justify-between bg-white">
+    <main className="flex justify-center bg-white">
       <LeftSidebar />
-      <main className="p-10 max-h-screen overflow-auto">{children}</main>
+      <main className="p-10 grow max-h-screen overflow-auto">{children}</main>
       <RightSidebar />
     </main>
   )
