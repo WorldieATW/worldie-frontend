@@ -16,10 +16,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Header />
       <AuthContextProvider>
         {isUnprotectedPage ? (
-          <Component {...pageProps} />
+          <Component {...pageProps} key={router.pathname} />
         ) : (
           <LayoutModule>
-            <Component {...pageProps} />
+            <Component {...pageProps} key={router.pathname} />
           </LayoutModule>
         )}
         <Toaster />
