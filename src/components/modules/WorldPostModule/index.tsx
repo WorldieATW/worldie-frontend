@@ -1,6 +1,8 @@
 import { CreateWorldPost } from './sections/CreateWorldPost'
 
 export const WorldPostModule = () => {
+  
+
   return (
     <>
       <section className="flex flex-col">
