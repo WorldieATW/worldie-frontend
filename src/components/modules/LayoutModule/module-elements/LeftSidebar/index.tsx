@@ -1,12 +1,11 @@
 import Image from 'next/image'
-import { GrLocation } from 'react-icons/gr'
 import { useAuthContext } from '@contexts'
-import { MdDashboard, MdDirectionsCar } from 'react-icons/md'
-import { BiSolidHomeCircle } from 'react-icons/bi'
-import { LeftSideBarContent } from './LeftSidebarContent'
-import { RiHotelFill, RiUser3Fill } from 'react-icons/ri'
+import { MdDashboard } from 'react-icons/md'
+import { LeftSideBarContent } from './LeftSideBarContent'
+import { RiUser3Fill } from 'react-icons/ri'
 import Link from 'next/link'
 import { UserMenu } from './UserMenu'
+import { LEFT_SIDE_BAR_MENUS } from '../../constant'
 
 export const LeftSidebar: React.FC = () => {
   const { user } = useAuthContext()
@@ -17,7 +16,7 @@ export const LeftSidebar: React.FC = () => {
         return (
           <LeftSideBarContent
             link=""
-            icon={<MdDashboard fill="black" size={20} />}
+            Icon={MdDashboard}
             text="Dashboard Agen"
           />
         )
@@ -25,48 +24,25 @@ export const LeftSidebar: React.FC = () => {
         return (
           <LeftSideBarContent
             link=""
-            icon={<MdDashboard fill="black" size={20} />}
+            Icon={MdDashboard}
             text="Dashboard Admin"
           />
         )
       }
     }
-    return (
-      <LeftSideBarContent
-        link=""
-        icon={<RiUser3Fill fill="black" size={20} />}
-        text="Profile"
-      />
-    )
+    return <LeftSideBarContent link="" Icon={RiUser3Fill} text="Profile" />
   }
 
   return (
     <aside className="font-poppins text-black font-bold p-10 justify-between flex-shrink-0 bg-white h-screen border border-r-black/10">
       <div className="flex flex-col gap-y-8">
-        <Link href="/">
+        <Link href="/world-post">
           <Image alt="logo" src="/logo.svg" width={30} height={30} />
         </Link>
         <div className="flex flex-col gap-y-6">
-          <LeftSideBarContent
-            link="/protected"
-            icon={<BiSolidHomeCircle fill="black" size={20} />}
-            text="Home"
-          />
-          <LeftSideBarContent
-            link=""
-            icon={<GrLocation fill="black" size={20} />}
-            text="Tourist Attraction"
-          />
-          <LeftSideBarContent
-            link=""
-            icon={<MdDirectionsCar fill="black" size={20} />}
-            text="Transportation"
-          />
-          <LeftSideBarContent
-            link=""
-            icon={<RiHotelFill fill="black" size={20} />}
-            text="Accomodation"
-          />
+          {LEFT_SIDE_BAR_MENUS.map(({ link, Icon, text }) => (
+            <LeftSideBarContent link={link} Icon={Icon} text={text} />
+          ))}
           {renderProfileMenu()}
         </div>
         <Link href="">
@@ -76,7 +52,7 @@ export const LeftSidebar: React.FC = () => {
         </Link>
       </div>
 
-      {user && <UserMenu user={user} />}
+      {user && <UserMenu />}
     </aside>
   )
 }
