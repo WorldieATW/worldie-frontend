@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { HiUserCircle } from 'react-icons/hi2'
 import { BsImage } from 'react-icons/bs'
 import { useAuthContext } from '@contexts'
-import { CreateWorldPostResponse } from '../interface'
+import { WorldPost } from '../interface'
 import toast from 'react-hot-toast'
 
 export const CreateWorldPost = () => {
@@ -25,7 +25,7 @@ export const CreateWorldPost = () => {
     }
 
     const { response, error: _error } =
-      await httpFetch<CreateWorldPostResponse>({
+      await httpFetch<WorldPost>({
         method: 'post',
         url: 'traveler/world-post',
         body: body,
