@@ -7,6 +7,7 @@ import { BsTrash3Fill } from 'react-icons/bs'
 import { DeleteWorldPostModal } from './DeleteWorldPostModal'
 import { useAuthContext } from '@contexts'
 import { useRouter } from 'next/router'
+import { getFileCloudinary, getImageFileTypes } from '@utils'
 
 export const WorldPostCard: React.FC<WorldPostCardProps> = ({
   isDetail,
@@ -17,10 +18,15 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({
   const router = useRouter()
   const { user } = useAuthContext()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
-  const { timestamp, traveler, konten, travelerId } = worldPost
+  const { timestamp, traveler, konten, travelerId, attachmentUrl } = worldPost
   const formattedTimestamp = format(new Date(timestamp), 'd MMMM yyyy', {
     locale: id,
   })
+
+  let fileType = ''
+  if (attachmentUrl) {
+    fileType = attachmentUrl.split('.')[1]
+  }
 
   const handleDeleteWorldPostButton = () => setShowDeleteModal(!showDeleteModal)
 
@@ -48,7 +54,32 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({
                   <p className="text-[#828282]">{`• ${formattedTimestamp}`}</p>
                 </div>
               </div>
-              <p className="text-left">{konten}</p>
+              <div
+                className={`flex flex-col gap-1 ${
+                  !isDetail && 'max-h-[400px] overflow-auto'
+                }`}
+              >
+                <p className="text-left">{konten}</p>
+                {getImageFileTypes().includes(fileType) ? (
+                  <img
+                    width={'500px'}
+                    src={getFileCloudinary({
+                      attachmentUrl: attachmentUrl,
+                      type: 'image',
+                    })}
+                  />
+                ) : (
+                  attachmentUrl && (
+                    <iframe
+                      src={getFileCloudinary({
+                        attachmentUrl: attachmentUrl,
+                        type: 'video',
+                      })}
+                      className="h-[500px]"
+                    />
+                  )
+                )}
+              </div>
             </div>
           </button>
           {user?.id === travelerId && (

@@ -44,7 +44,11 @@ export const CreateWorldPost: React.FC<CreateWorldPostProps> = ({
 
     let attachmentUrl = ''
     if (selectedFile) {
-      attachmentUrl = await uploadFileCloudinary(selectedFile)
+      const type = imagePreviewUrl ? 'image' : 'video'
+      attachmentUrl = await uploadFileCloudinary({
+        file: selectedFile,
+        type: type,
+      })
     }
 
     const body = {
@@ -85,12 +89,12 @@ export const CreateWorldPost: React.FC<CreateWorldPostProps> = ({
             onChange={(event) => setContent(event.target.value)}
             value={content}
           />
-          {imagePreviewUrl && <img src={imagePreviewUrl} />}
+          {imagePreviewUrl && <img width={'500px'} src={imagePreviewUrl} />}
           {videoPreviewUrl && (
             <iframe
               src={videoPreviewUrl}
               allow="autoplay"
-              className="h-[375px]"
+              className="h-[500px]"
             />
           )}
         </div>
