@@ -3,15 +3,15 @@ export interface WorldPost {
   konten: string
   attachmentUrl: string
   travelerId: string
-  traveler: {nama: string}
+  traveler: { nama: string }
   parentPostId: string
   timestamp: string
 }
 
 export interface GetWorldPostsResponse {
-    worldPosts: WorldPost[]
+  worldPosts: WorldPost[]
 }
 
 export interface WorldPostCardProps {
-    worldPost: WorldPost
+  worldPost: WorldPost
 }

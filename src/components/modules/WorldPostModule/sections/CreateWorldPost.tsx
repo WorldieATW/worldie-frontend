@@ -24,12 +24,11 @@ export const CreateWorldPost = () => {
       parentPostId: '',
     }
 
-    const { response, error: _error } =
-      await httpFetch<WorldPost>({
-        method: 'post',
-        url: 'traveler/world-post',
-        body: body,
-      })
+    const { response, error: _error } = await httpFetch<WorldPost>({
+      method: 'post',
+      url: 'traveler/world-post',
+      body: body,
+    })
 
     if (response) {
       console.log(response)

@@ -1,4 +1,4 @@
-import { useEffect, useState }  from 'react'
+import { useEffect, useState } from 'react'
 import { useAuthContext } from '@contexts'
 import { CreateWorldPost } from './sections/CreateWorldPost'
 import { GetWorldPostsResponse, WorldPost } from './interface'
@@ -16,7 +16,7 @@ export const WorldPostModule = () => {
 
     const { response, error: _error } = await httpFetch<GetWorldPostsResponse>({
       method: 'get',
-      url: 'world-post-manager'
+      url: 'world-post-manager',
     })
 
     if (response) {
@@ -43,8 +43,16 @@ export const WorldPostModule = () => {
           <hr className="h-2 bg-teal-100 border-none" />
         </div>
 
-        <div className='flex flex-col gap-3'>
-          {isLoading? <div className='px-7'><Skeleton height={400} /></div> : worldPosts.map((worldPost) => (<WorldPostCard worldPost={worldPost} />))}
+        <div className="flex flex-col gap-3">
+          {isLoading ? (
+            <div className="px-7">
+              <Skeleton height={400} />
+            </div>
+          ) : (
+            worldPosts.map((worldPost) => (
+              <WorldPostCard worldPost={worldPost} />
+            ))
+          )}
         </div>
       </section>
     </>
