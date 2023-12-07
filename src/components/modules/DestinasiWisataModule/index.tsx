@@ -1,4 +1,4 @@
-import { AsetUsahaCard} from '@elements'
+import { AsetUsahaCard } from '@elements'
 import React from 'react'
 
 export const DestinasiWisataModule: React.FC = () => {
