@@ -4,9 +4,7 @@ export const CreateWorldPost = () => {
   return (
     <div className="px-7 flex flex-row">
       <HiUserCircle fill="black" size={45} />
-      <div className="flex flex-col">
-        
-      </div>
+      <div className="flex flex-col"></div>
     </div>
   )
 }
