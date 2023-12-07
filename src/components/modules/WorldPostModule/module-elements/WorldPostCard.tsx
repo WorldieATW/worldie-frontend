@@ -11,11 +11,9 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
   const { user } = useAuthContext()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const { timestamp, traveler, konten, travelerId } = worldPost
-  const formattedTimestamp = format(
-    new Date(timestamp),
-    'd MMMM yyyy',
-    { locale: id }
-  )
+  const formattedTimestamp = format(new Date(timestamp), 'd MMMM yyyy', {
+    locale: id,
+  })
 
   const handleDeleteWorldPostButton = () => setShowDeleteModal(!showDeleteModal)
 
@@ -31,7 +29,10 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
                 <p className="text-[#828282]">{`• ${formattedTimestamp}`}</p>
               </div>
               {user?.id === travelerId && (
-                <button className="w-fit h-fit" onClick={handleDeleteWorldPostButton}>
+                <button
+                  className="w-fit h-fit"
+                  onClick={handleDeleteWorldPostButton}
+                >
                   <BsTrash3Fill className="w-5 h-5 text-red-700" />
                 </button>
               )}
@@ -42,7 +43,12 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
         <hr />
       </div>
 
-      <DeleteWorldPostModal isOpen={showDeleteModal} setIsOpen={setShowDeleteModal} onClose={handleDeleteWorldPostButton} worldPostId={worldPost.id} />
+      <DeleteWorldPostModal
+        isOpen={showDeleteModal}
+        setIsOpen={setShowDeleteModal}
+        onClose={handleDeleteWorldPostButton}
+        worldPostId={worldPost.id}
+      />
     </>
   )
 }
