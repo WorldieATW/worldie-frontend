@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { IoLocationSharp } from 'react-icons/io5'
 import { AsetUsahaCardProps } from './interface'
-import { GiTransportationRings } from "react-icons/gi";
+import { GiTransportationRings } from 'react-icons/gi'
 
 export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
   nama,
