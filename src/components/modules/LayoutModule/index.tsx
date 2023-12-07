@@ -7,7 +7,7 @@ export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
   return (
     <main className="flex justify-between bg-white">
       <LeftSidebar />
-      <main>{children}</main>
+      <main className="p-10 max-h-screen overflow-auto">{children}</main>
       <RightSidebar />
     </main>
   )
