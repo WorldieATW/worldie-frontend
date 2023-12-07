@@ -9,7 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
-import { DeleteWorldPostModalProps } from '../interface'
+import { DeleteWorldPostModalProps } from '../../modules/WorldPostModule/interface'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { useAuthContext } from '@contexts'
 import toast from 'react-hot-toast'

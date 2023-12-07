@@ -4,10 +4,9 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { GetDetailWorldPostResponse } from './interface'
 import toast from 'react-hot-toast'
-import { Skeleton } from '@elements'
+import { Skeleton, WorldPostCard } from '@elements'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
-import { WorldPostCard } from '../WorldPostModule/module-elements/WorldPostCard'
 
 export const DetailWorldPostModule = () => {
   const {
@@ -25,7 +24,6 @@ export const DetailWorldPostModule = () => {
 
     if (response) {
       const { worldPost } = response
-      console.log(worldPost)
       setWorldPost(worldPost)
     } else {
       const statusCode = error?.statusCode

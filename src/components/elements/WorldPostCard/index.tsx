@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { HiUserCircle } from 'react-icons/hi2'
-import { WorldPostCardProps } from '../interface'
+import { WorldPostCardProps } from './interface'
 import { format } from 'date-fns'
 import { id } from 'date-fns/locale'
 import { BsTrash3Fill } from 'react-icons/bs'

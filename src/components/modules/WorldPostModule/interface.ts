@@ -5,10 +5,6 @@ export interface GetWorldPostsResponse {
   worldPosts: WorldPost[]
 }
 
-export interface WorldPostCardProps {
-  worldPost: WorldPost
-}
-
 export interface DeleteWorldPostModalProps {
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
