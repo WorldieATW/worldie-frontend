@@ -1,7 +1,6 @@
-import { AsetUsahaCard, BackButton, Select } from "@elements"
-import { useAsetUsahaApi } from "src/components/hooks/useAsetUsahaApi"
-import { JENIS_PENGINAPAN_OPTIONS } from "./constant"
-
+import { AsetUsahaCard, BackButton, Select } from '@elements'
+import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
+import { JENIS_PENGINAPAN_OPTIONS } from './constant'
 
 export const PenginapanModule: React.FC = () => {
   const { asetUsaha, setJenisPenginapan } = useAsetUsahaApi({
