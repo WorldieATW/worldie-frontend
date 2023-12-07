@@ -6,7 +6,7 @@ import { RiHotelFill } from 'react-icons/ri'
 
 export const LEFT_SIDE_BAR_MENUS: LeftSidebarContentProps[] = [
   {
-    link: '/world-post',
+    link: '/home',
     Icon: BiSolidHomeCircle,
     text: 'Home',
   },
