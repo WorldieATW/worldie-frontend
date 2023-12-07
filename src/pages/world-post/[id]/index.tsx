@@ -1,5 +1,5 @@
-import { DetailWorldPostModule } from "@modules";
-import { NextPage } from "next";
+import { DetailWorldPostModule } from '@modules'
+import { NextPage } from 'next'
 
 const DetailWorldPost: NextPage = () => <DetailWorldPostModule />
 

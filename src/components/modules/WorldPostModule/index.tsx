@@ -52,7 +52,10 @@ export const WorldPostModule = () => {
             </div>
           ) : (
             worldPosts.map((worldPost) => (
-              <Link href={`world-post/${worldPost.id}`} className='bg-white hover:bg-[#4468E2]/[0.05]'>
+              <Link
+                href={`world-post/${worldPost.id}`}
+                className="bg-white hover:bg-[#4468E2]/[0.05]"
+              >
                 <WorldPostCard worldPost={worldPost} />
               </Link>
             ))
