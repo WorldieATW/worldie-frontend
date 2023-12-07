@@ -16,12 +16,12 @@ export const LEFT_SIDE_BAR_MENUS: LeftSidebarContentProps[] = [
     text: 'Tourist Attraction',
   },
   {
-    link: '/',
+    link: '/transportation',
     Icon: MdDirectionsCar,
     text: 'Transportation',
   },
   {
-    link: '',
+    link: '/accomodation',
     Icon: RiHotelFill,
     text: 'Accomodation',
   },

@@ -39,12 +39,10 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
             </>
           )}
         </div>
-        <div className="max-h-5 text-ellipsis overflow-hidden whitespace-nowrap">
+        <div className="max-h-8 text-ellipsis overflow-hidden whitespace-nowrap">
           <span className="font-bold text-black">{nama}</span>
         </div>
-        <span className="text-xs text-grayjoy italic">
-          Rp{harga} each night
-        </span>
+        <span className="text-xs text-grayjoy italic">Rp{harga} each day</span>
       </div>
     </div>
   )
