@@ -6,8 +6,15 @@ import { id } from 'date-fns/locale'
 import { BsTrash3Fill } from 'react-icons/bs'
 import { DeleteWorldPostModal } from './DeleteWorldPostModal'
 import { useAuthContext } from '@contexts'
+import { useRouter } from 'next/router'
 
-export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
+export const WorldPostCard: React.FC<WorldPostCardProps> = ({
+  isDetail,
+  worldPost,
+  worldPostsChanged,
+  setWorldPostsChanged,
+}) => {
+  const router = useRouter()
   const { user } = useAuthContext()
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const { timestamp, traveler, konten, travelerId } = worldPost
@@ -17,37 +24,53 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
 
   const handleDeleteWorldPostButton = () => setShowDeleteModal(!showDeleteModal)
 
+  const handleCardButton = () => router.push(`world-post/${worldPost.id}`)
+
   return (
     <>
-      <div key={worldPost.id} className="w-full flex flex-col gap-2 pt-2">
-        <div className="px-7 flex flex-row gap-2 w-full">
-          <HiUserCircle fill="black" size={45} />
-          <div className="flex flex-col pt-1 gap-1 w-full">
-            <div className="flex justify-between w-full relative">
-              <div className="flex flex-row gap-1">
-                <p className="font-bold">{traveler.nama}</p>
-                <p className="text-[#828282]">{`• ${formattedTimestamp}`}</p>
+      <div
+        key={worldPost.id}
+        className={`w-full flex flex-col gap-2 pt-2 ${
+          !isDetail && 'bg-white hover:bg-[#4468E2]/[0.05]'
+        }`}
+      >
+        <div className="flex flex-row px-7">
+          <button
+            className="flex flex-row gap-2 w-full"
+            onClick={handleCardButton}
+            disabled={isDetail}
+          >
+            <HiUserCircle fill="black" size={45} />
+            <div className="flex flex-col pt-1 gap-1 w-full">
+              <div className="flex w-full">
+                <div className="flex flex-row gap-1">
+                  <p className="font-bold">{traveler.nama}</p>
+                  <p className="text-[#828282]">{`• ${formattedTimestamp}`}</p>
+                </div>
               </div>
-              {user?.id === travelerId && (
-                <button
-                  className="w-fit h-fit"
-                  onClick={handleDeleteWorldPostButton}
-                >
-                  <BsTrash3Fill className="w-5 h-5 text-red-700" />
-                </button>
-              )}
+              <p className="text-left">{konten}</p>
             </div>
-            <p>{konten}</p>
-          </div>
+          </button>
+          {user?.id === travelerId && (
+            <button
+              className="w-fit h-fit z-50"
+              onClick={handleDeleteWorldPostButton}
+            >
+              <BsTrash3Fill className="w-5 h-5 text-red-700" />
+            </button>
+          )}
         </div>
         <hr />
       </div>
 
       <DeleteWorldPostModal
+        isDetail={isDetail}
         isOpen={showDeleteModal}
         setIsOpen={setShowDeleteModal}
         onClose={handleDeleteWorldPostButton}
         worldPostId={worldPost.id}
+        worldPostsChanged={worldPostsChanged}
+        setWorldPostsChanged={setWorldPostsChanged}
       />
     </>
   )

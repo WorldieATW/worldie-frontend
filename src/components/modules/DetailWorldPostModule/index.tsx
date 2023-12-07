@@ -51,7 +51,7 @@ export const DetailWorldPostModule = () => {
       </div>
 
       {worldPost ? (
-        <WorldPostCard worldPost={worldPost} />
+        <WorldPostCard worldPost={worldPost} isDetail={true} />
       ) : (
         <div className="px-7">
           <Skeleton height={400} />

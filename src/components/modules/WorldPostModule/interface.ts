@@ -5,9 +5,7 @@ export interface GetWorldPostsResponse {
   worldPosts: WorldPost[]
 }
 
-export interface DeleteWorldPostModalProps {
-  isOpen: boolean
-  setIsOpen: Dispatch<SetStateAction<boolean>>
-  onClose: () => void
-  worldPostId: string
+export interface CreateWorldPostProps {
+  worldPostsChanged: boolean
+  setWorldPostsChanged: Dispatch<SetStateAction<boolean>>
 }
