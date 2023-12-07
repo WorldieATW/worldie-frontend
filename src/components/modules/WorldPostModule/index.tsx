@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '@contexts'
 import { CreateWorldPost } from './sections/CreateWorldPost'
-import { GetWorldPostsResponse, WorldPost } from './interface'
+import { GetWorldPostsResponse } from './interface'
 import toast from 'react-hot-toast'
 import { WorldPostCard } from './module-elements/WorldPostCard'
 import { Skeleton } from '@elements'
+import { WorldPost } from '@models'
+import Link from 'next/link'
 
 export const WorldPostModule = () => {
   const { httpFetch } = useAuthContext()
@@ -37,20 +39,22 @@ export const WorldPostModule = () => {
     <>
       <section className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <h1 className="font-paytone text-lg px-7">Home</h1>
+          <h1 className="font-paytone text-lg px-7">World Posts</h1>
           <hr />
           <CreateWorldPost />
           <hr className="h-2 bg-teal-100 border-none" />
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col">
           {isLoading ? (
             <div className="px-7">
               <Skeleton height={400} />
             </div>
           ) : (
             worldPosts.map((worldPost) => (
-              <WorldPostCard worldPost={worldPost} />
+              <Link href={`world-post/${worldPost.id}`} className='bg-white hover:bg-[#4468E2]/[0.05]'>
+                <WorldPostCard worldPost={worldPost} />
+              </Link>
             ))
           )}
         </div>

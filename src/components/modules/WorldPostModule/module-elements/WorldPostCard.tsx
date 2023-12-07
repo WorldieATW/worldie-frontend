@@ -19,7 +19,7 @@ export const WorldPostCard: React.FC<WorldPostCardProps> = ({ worldPost }) => {
 
   return (
     <>
-      <div key={worldPost.id} className="w-full flex flex-col gap-2">
+      <div key={worldPost.id} className="w-full flex flex-col gap-2 pt-2">
         <div className="px-7 flex flex-row gap-2 w-full">
           <HiUserCircle fill="black" size={45} />
           <div className="flex flex-col pt-1 gap-1 w-full">

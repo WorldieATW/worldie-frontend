@@ -1,14 +1,5 @@
+import { WorldPost } from '@models'
 import { Dispatch, SetStateAction } from 'react'
-
-export interface WorldPost {
-  id: string
-  konten: string
-  attachmentUrl: string
-  travelerId: string
-  traveler: { nama: string }
-  parentPostId: string
-  timestamp: string
-}
 
 export interface GetWorldPostsResponse {
   worldPosts: WorldPost[]

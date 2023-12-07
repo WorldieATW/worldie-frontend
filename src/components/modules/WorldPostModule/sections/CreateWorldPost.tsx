@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { HiUserCircle } from 'react-icons/hi2'
 import { BsImage } from 'react-icons/bs'
 import { useAuthContext } from '@contexts'
-import { WorldPost } from '../interface'
 import toast from 'react-hot-toast'
+import { WorldPost } from '@models'
 
 export const CreateWorldPost = () => {
   const { httpFetch } = useAuthContext()
