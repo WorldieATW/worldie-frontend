@@ -5,6 +5,7 @@ import { LayoutModule } from '@modules'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { Toaster } from 'react-hot-toast'
+import { ChakraProvider } from '@chakra-ui/react'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -13,17 +14,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Header />
-      <AuthContextProvider>
-        {isUnprotectedPage ? (
-          <Component {...pageProps} />
-        ) : (
-          <LayoutModule>
-            <Component {...pageProps} />
-          </LayoutModule>
-        )}
-        <Toaster />
-      </AuthContextProvider>
+      <ChakraProvider>
+        <Header />
+        <AuthContextProvider>
+          {isUnprotectedPage ? (
+            <Component {...pageProps} key={router.pathname} />
+          ) : (
+            <LayoutModule>
+              <Component {...pageProps} key={router.pathname} />
+            </LayoutModule>
+          )}
+          <Toaster />
+        </AuthContextProvider>
+      </ChakraProvider>
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { TrendingProps } from './interface'
+import { TrendingProps } from '../../interface'
 
 export const Trending: React.FC<TrendingProps> = ({ num, count, nama }) => {
   return (

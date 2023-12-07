@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import { LeftSidebarContentProps } from './interface'
+import { LeftSidebarContentProps } from '../../interface'
 import { useState } from 'react'
 import React from 'react'
 import { useRouter } from 'next/router'
 
 export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
   link,
-  icon,
+  Icon,
   text,
 }) => {
   const [hover, setHover] = useState(false)
@@ -21,7 +21,7 @@ export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
         router.asPath === link ? 'text-royal' : ''
       } flex items-center gap-x-4 hover:text-royal`}
     >
-      {React.cloneElement(icon, {
+      {React.cloneElement(<Icon fill="black" size={20} />, {
         className:
           router.asPath === link || hover ? ' fill-royal stroke-royal' : '',
       })}

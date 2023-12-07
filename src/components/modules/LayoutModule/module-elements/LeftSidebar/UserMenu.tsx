@@ -3,12 +3,12 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { FiLogOut } from 'react-icons/fi'
 import { useAuthContext } from '@contexts'
-import { UserMenuProps } from './interface'
 import { HiMiniEllipsisHorizontal, HiUserCircle } from 'react-icons/hi2'
 import { getFirstName } from '@utils'
 
-export const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
-  const { isAuthenticated, setIsAuthenticated, setUser } = useAuthContext()
+export const UserMenu: React.FC = () => {
+  const { isAuthenticated, setIsAuthenticated, setUser, user } =
+    useAuthContext()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const bgColor = isOpen ? 'bg-grayjoy/20' : ''
