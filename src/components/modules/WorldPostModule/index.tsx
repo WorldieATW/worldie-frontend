@@ -1,4 +1,4 @@
-import { CreateWorldPost } from "./sections/CreateWorldPost"
+import { CreateWorldPost } from './sections/CreateWorldPost'
 
 export const WorldPostModule = () => {
   return (
