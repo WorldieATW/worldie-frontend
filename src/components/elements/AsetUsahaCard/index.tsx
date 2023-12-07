@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { IoLocationSharp } from 'react-icons/io5'
 import { AsetUsahaCardProps } from './interface'
 import { GiTransportationRings } from 'react-icons/gi'
+import Link from 'next/link'
 
 export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
   nama,
@@ -11,9 +12,10 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
   provinsi,
   negara,
   jenisKendaraan,
+  detailLink
 }) => {
   return (
-    <div className="w-52 h-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg">
+    <Link href={detailLink} className="w-52 h-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg">
       <div className="flex justify-center">
         <Image
           alt={nama}
@@ -44,6 +46,6 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
         </div>
         <span className="text-xs text-grayjoy italic">Rp{harga} each day</span>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -8,7 +8,7 @@ export const BackButton: React.FC<BackButtonProps> = ({ text }) => {
   return (
     <div className="flex items-center gap-x-4">
       <MdArrowBackIosNew onClick={() => router.back()} className="fill-black" />
-      <span className="text-lg font-paytone text-black">{text}</span>
+      <span className="text-xl font-paytone text-black">{text}</span>
     </div>
   )
 }

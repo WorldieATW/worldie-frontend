@@ -26,10 +26,10 @@ export const Select: React.FC<SelectProps> = ({ options, onChange }) => {
   })
 
   return (
-    <div className="relative text-left font-semibold" ref={ref}>
+    <div className="relative font-poppins font-bold text-white first-letter:text-left shadow" ref={ref}>
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="cursor-pointer rounded-lg bg-royal px-4 py-2 text-md font-medium hover:bg-opacity-90 flex items-center justify-between shadow"
+        className="cursor-pointer rounded-lg bg-royal px-4 py-2 text-md font-bold hover:bg-opacity-90 flex items-center justify-between shadow"
       >
         <span className="pr-6">{selectedOption}</span>
         <div className="transform transition-transform">

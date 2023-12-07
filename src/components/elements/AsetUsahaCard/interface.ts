@@ -5,4 +5,5 @@ export interface AsetUsahaCardProps {
   provinsi?: string
   negara?: string
   jenisKendaraan?: string
+  detailLink: string
 }

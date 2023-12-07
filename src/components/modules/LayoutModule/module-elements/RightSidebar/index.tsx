@@ -50,7 +50,7 @@ export const RightSidebar: React.FC = () => {
         </div>
 
         <Link
-          href=""
+          href="/tourist-attraction"
           className="font-popins font-semibold text-sm flex justify-center items-center px-4 py-3 text-royal hover:underline"
         >
           See more
