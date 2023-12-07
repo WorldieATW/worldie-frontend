@@ -1,5 +1,5 @@
-import { WorldPost } from "@models";
+import { WorldPost } from '@models'
 
 export interface WorldPostCardProps {
-    worldPost: WorldPost
+  worldPost: WorldPost
 }
