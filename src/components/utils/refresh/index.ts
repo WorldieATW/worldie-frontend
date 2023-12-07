@@ -47,7 +47,6 @@ export const refresh = async ({
 
     return new Error()
   } catch (error: any) {
-    console.log(error)
     toast.error('Oops, sesi kamu telah berakhir! Silahkan ogin kembali')
     localStorage.removeItem(process.env.NEXT_PUBLIC_TOKEN_NAME as string)
     router.push('/login')
