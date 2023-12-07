@@ -53,7 +53,7 @@ export const LeftSidebar: React.FC = () => {
             text="Home"
           />
           <LeftSideBarContent
-            link=""
+            link="/tourist-attraction"
             icon={<GrLocation fill="black" size={20} />}
             text="Tourist Attraction"
           />

@@ -1,17 +1,38 @@
 import { AsetUsahaCard } from '@elements'
-import React from 'react'
+import { MdArrowBackIosNew } from 'react-icons/md'
+import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
+import { useRouter } from 'next/router'
 
 export const DestinasiWisataModule: React.FC = () => {
+  const { asetUsaha } = useAsetUsahaApi({ initialTipe: 'DESTINASI_WISATA' })
+  const router = useRouter()
+
   return (
-    <section className="p-10 flex flex-col gap-y-6">
-      <div className="flex flex-wrap gap-3">
-        <AsetUsahaCard
-          nama="Hotel Kemangi"
-          harga={10000000}
-          imgUrl="https://www.usatoday.com/gcdn/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg"
-          provinsi="Jakarta"
-          negara="Indonesia"
+    <section className="w-full px-7 flex flex-col gap-y-6">
+      <div className="flex items-center gap-x-4">
+        <MdArrowBackIosNew
+          onClick={() => router.back()}
+          className="fill-black"
         />
+        <span className="text-lg font-paytone text-black">
+          Tourist Attraction
+        </span>
+      </div>
+
+      <div className="flex flex-wrap gap-3">
+        {asetUsaha.map((aset, index) => {
+          console.log(aset)
+          return (
+            <AsetUsahaCard
+              key={index}
+              nama={aset.nama}
+              harga={aset.harga}
+              imgUrl={aset.imgUrl}
+              provinsi={aset.alamat?.provinsi}
+              negara={aset.alamat?.negara}
+            />
+          )
+        })}
       </div>
     </section>
   )

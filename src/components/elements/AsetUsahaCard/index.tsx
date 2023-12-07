@@ -23,7 +23,7 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
           className="rounded-lg"
         />
       </div>
-      <div className="p-4 gap-y-1 flex flex-col text-black">
+      <div className="p-4 gap-y-1 flex flex-col text-black max-w-40">
         <div className="flex items-center gap-x-2">
           {jenisKendaraan ? (
             <>
@@ -39,7 +39,9 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
             </>
           )}
         </div>
-        <span className="font-bold text">Hotel Kemangi</span>
+        <div className="max-h-5 text-ellipsis overflow-hidden whitespace-nowrap">
+          <span className="font-bold text-black">{nama}</span>
+        </div>
         <span className="text-xs text-grayjoy italic">
           Rp{harga} each night
         </span>
