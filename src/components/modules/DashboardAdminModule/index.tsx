@@ -1,10 +1,11 @@
 import { DashboardHeader } from '@elements'
+import { ApplicationSection } from './ApplicationSection'
 
 export const DashboardAdminModule = () => {
   return (
-    <section className="flex flex-col py-6 lg:py-8">
+    <section className="flex flex-col py-6 lg:py-8 gap-2 lg:gap-6">
       <DashboardHeader />
-      <div className="border border-b border-black/5" />
+      <ApplicationSection />
     </section>
   )
 }
