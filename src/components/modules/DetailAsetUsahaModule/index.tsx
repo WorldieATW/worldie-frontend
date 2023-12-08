@@ -1,4 +1,4 @@
-import { useAuthContext } from '@contexts'
+import { useAuthContext, useLayoutContext } from '@contexts'
 import { BackButton } from '@elements'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -16,6 +16,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
   const [rating, setRating] = useState(0)
   const [expanded, setExpanded] = useState(false)
   const { user } = useAuthContext()
+  const { refreshTrending } = useLayoutContext()
   const { isOpen, openModal, closeModal } = useModal()
   const {
     isOpen: isUpdateOpen,
@@ -139,7 +140,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
         <DeleteModal
           id={router.query.id as string}
           title="Are you sure you want to delete this Asset?"
-          onSave={() => {}}
+          onSave={refreshTrending}
           close={closeModal}
         />
       )}
@@ -153,6 +154,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
             fetchAsetUsahaById(
               router.query.id ? (router.query.id as string) : ''
             )
+            refreshTrending()
           }}
           close={closeUpdateModal}
         />

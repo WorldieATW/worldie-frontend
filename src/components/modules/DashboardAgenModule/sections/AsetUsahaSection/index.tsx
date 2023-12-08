@@ -1,4 +1,4 @@
-import { useAuthContext } from '@contexts'
+import { useAuthContext, useLayoutContext } from '@contexts'
 import { AsetUsahaCard, Select } from '@elements'
 import { useEffect } from 'react'
 import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
@@ -11,6 +11,7 @@ import { CreateModal } from '../../module-elements'
 
 export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
   const { user } = useAuthContext()
+  const { refreshTrending } = useLayoutContext()
   const { isOpen, openModal, closeModal } = useModal()
   const {
     asetUsaha,
@@ -98,7 +99,10 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
         <CreateModal
           title="Create"
           tipe={tipe}
-          onSave={fetchAllAsetUsaha}
+          onSave={() => {
+            fetchAllAsetUsaha()
+            refreshTrending()
+          }}
           close={closeModal}
         />
       )}
@@ -106,7 +110,10 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
         <CreateModal
           title="Create"
           tipe={tipe}
-          onSave={fetchAllAsetUsaha}
+          onSave={() => {
+            fetchAllAsetUsaha()
+            refreshTrending()
+          }}
           close={closeModal}
         />
       )}
@@ -114,7 +121,10 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
         <CreateModal
           title="Create"
           tipe={tipe}
-          onSave={fetchAllAsetUsaha}
+          onSave={() => {
+            fetchAllAsetUsaha()
+            refreshTrending()
+          }}
           close={closeModal}
         />
       )}
