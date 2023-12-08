@@ -10,9 +10,9 @@ export const DestinasiWisataSection: React.FC = () => {
   })
 
   useEffect(() => {
-    setAgenId(user?.id? user.id: '')
+    setAgenId(user?.id ? user.id : '')
   }, [user?.id])
-  
+
   return (
     <div className="flex flex-wrap gap-6">
       {asetUsaha.map((aset, index) => {
