@@ -39,7 +39,7 @@ export const Modal: React.FC<ModalProps> = ({
       negara: negara,
     }
 
-    const { response} = await httpFetch({
+    const { response } = await httpFetch({
       method: 'post',
       url: `aset-usaha/${handleUrl()}`,
       isAuthorized: true,
