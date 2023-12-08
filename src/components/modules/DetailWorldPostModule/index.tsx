@@ -52,7 +52,10 @@ export const DetailWorldPostModule = () => {
       </div>
 
       {worldPost ? (
-        <><WorldPostCard worldPost={worldPost} /><CreateComment name={worldPost.traveler.nama} /></>
+        <>
+          <WorldPostCard worldPost={worldPost} />
+          <CreateComment name={worldPost.traveler.nama} parentPostId={worldPost.id} />
+        </>
       ) : (
         <div className="px-7">
           <Skeleton height={400} />
