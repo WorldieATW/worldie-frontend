@@ -59,6 +59,7 @@ export const useAsetUsahaApi = ({ initialTipe = '' }) => {
     setTipe,
     setJenisKendaraan,
     setJenisPenginapan,
+    fetchAllAsetUsaha,
     fetchAsetUsahaById,
     asetUsaha,
     asetUsahaById,

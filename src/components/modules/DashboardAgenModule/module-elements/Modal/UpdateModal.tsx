@@ -1,7 +1,6 @@
 import { useAuthContext } from '@contexts'
 import { ModalProps } from './interface'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 
 export const UpdateModal: React.FC<ModalProps> = ({
@@ -13,7 +12,6 @@ export const UpdateModal: React.FC<ModalProps> = ({
   disableSave = false,
 }) => {
   const { httpFetch } = useAuthContext()
-  const router = useRouter()
   const [offsetY, setOffsetY] = useState(0)
   const [offsetX, setOffsetX] = useState(0)
   const [nama, setNama] = useState(asetUsaha?.nama)
@@ -54,7 +52,6 @@ export const UpdateModal: React.FC<ModalProps> = ({
 
     if (response) {
       toast.success(response.responseMessage)
-      router.back()
     } else {
       toast.error('Pastikan sudah benar gan')
     }

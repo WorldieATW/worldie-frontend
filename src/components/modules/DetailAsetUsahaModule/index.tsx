@@ -35,7 +35,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
     const rating =
       allReviews.reduce((prev: number, curr) => curr.rating + prev, 0) /
       allReviews.length
-    setRating(rating)
+    setRating(rating ? rating : 0)
   }
 
   useEffect(() => {
@@ -149,7 +149,11 @@ export const DetailAsetUsahaModule: React.FC = () => {
           id={router.query.id as string}
           asetUsaha={asetUsahaById}
           title="Update"
-          onSave={() => {}}
+          onSave={() => {
+            fetchAsetUsahaById(
+              router.query.id ? (router.query.id as string) : ''
+            )
+          }}
           close={closeUpdateModal}
         />
       )}

@@ -5,15 +5,20 @@ import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
 import { AsetUsahaSectionProps } from './interface'
 import { JENIS_KENDARAAN_OPTIONS } from 'src/components/modules/KendaraanModule/constant'
 import { JENIS_PENGINAPAN_OPTIONS } from 'src/components/modules/PenginapanModule/constant'
+import { useModal } from 'src/components/hooks/useModal'
+import { FaPlus } from 'react-icons/fa'
+import { CreateModal } from '../../module-elements'
 
 export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
   const { user } = useAuthContext()
+  const { isOpen, openModal, closeModal } = useModal()
   const {
     asetUsaha,
     setAgenId,
     setTipe,
     setJenisKendaraan,
     setJenisPenginapan,
+    fetchAllAsetUsaha,
   } = useAsetUsahaApi({
     initialTipe: tipe,
   })
@@ -30,6 +35,16 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
 
   return (
     <>
+      <div className="flex justify-start">
+        <button
+          onClick={openModal}
+          className="gap-x-2 flex items-center bg-white text-royal font-bold shadow px-2 py-1 rounded-lg"
+        >
+          <FaPlus />
+          <span>Create</span>
+        </button>
+      </div>
+
       {tipe === 'TRANSPORTASI' && (
         <div className="flex justify-end">
           <Select
@@ -78,6 +93,31 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
           )
         })}
       </div>
+
+      {isOpen && tipe === 'DESTINASI_WISATA' && (
+        <CreateModal
+          title="Create"
+          tipe={tipe}
+          onSave={fetchAllAsetUsaha}
+          close={closeModal}
+        />
+      )}
+      {isOpen && tipe === 'TRANSPORTASI' && (
+        <CreateModal
+          title="Create"
+          tipe={tipe}
+          onSave={fetchAllAsetUsaha}
+          close={closeModal}
+        />
+      )}
+      {isOpen && tipe === 'PENGINAPAN' && (
+        <CreateModal
+          title="Create"
+          tipe={tipe}
+          onSave={fetchAllAsetUsaha}
+          close={closeModal}
+        />
+      )}
     </>
   )
 }
