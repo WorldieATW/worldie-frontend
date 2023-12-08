@@ -11,7 +11,7 @@ export const DashboardAgenModule: React.FC = () => {
 
   return (
     <section className="px-7 flex flex-col gap2 lg:gap-6">
-      <DashboardHeader/>
+      <DashboardHeader />
       <div className="flex flex-col gap-y-8 font-poppins border-t border-t-black/10 pt-6">
         <span className="font-paytone text-xl 2xl:text-2xl">My Assets</span>
         <div className="flex gap-x-8 2xl:gap-x-10">
