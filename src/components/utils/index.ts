@@ -1,3 +1,7 @@
 export * from './refresh'
 export * from './parseJwt'
 export * from './getFirstName'
+export * from './uploadFileCloudinary'
+export * from './getFileCloudinary'
+export * from './getCloudinaryConfig'
+export * from './getImageFileTypes'

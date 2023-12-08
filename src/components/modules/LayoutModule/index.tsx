@@ -7,7 +7,7 @@ export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
   return (
     <main className="flex justify-center bg-white">
       <LeftSidebar />
-      <main className="py-10 grow max-h-screen overflow-auto">{children}</main>
+      <main className="py-7 grow max-h-screen overflow-auto">{children}</main>
       <RightSidebar />
     </main>
   )
