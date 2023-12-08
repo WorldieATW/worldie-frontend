@@ -17,6 +17,7 @@ export const Comments: React.FC<CommentsProps> = ({
       {comments ? (
         comments.map((worldPost) => (
           <CommentCard
+            key={worldPost.id}
             worldPost={worldPost}
             // commentsChanged={commentsChanged}
             // setCommentsChanged={setCommentsChanged}
