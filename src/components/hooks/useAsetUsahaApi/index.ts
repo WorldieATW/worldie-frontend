@@ -4,7 +4,6 @@ import { AsetUsaha, AsetUsahaProps } from './interface'
 
 export const useAsetUsahaApi = ({ initialTipe = '' }) => {
   const { httpFetch } = useAuthContext()
-  // const [asetUsahaId, setAsetUsahaId] = useState('')
   const [agenId, setAgenId] = useState('')
   const [tipe, setTipe] = useState(initialTipe)
   const [jenisKendaraan, setJenisKendaraan] = useState('')
