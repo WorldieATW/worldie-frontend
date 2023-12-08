@@ -1,5 +1,6 @@
 export interface ModalProps {
-  tipe: string
+  id?: string
+  tipe?: string
   title?: string
   close: () => void
   onSave: () => void

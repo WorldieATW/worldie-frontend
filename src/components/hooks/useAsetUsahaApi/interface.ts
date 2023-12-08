@@ -9,6 +9,7 @@ export interface AsetUsahaProps {
 
 export type AsetUsaha = {
   id: string
+  agenId: string
   nama: string
   deskripsi: string
   harga: number

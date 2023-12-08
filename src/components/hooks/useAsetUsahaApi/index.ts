@@ -26,7 +26,6 @@ export const useAsetUsahaApi = ({ initialTipe = '' }) => {
       .filter(Boolean)
       .join('&')
 
-    console.log(filtersUrl)
     const { response, error } = await httpFetch<AsetUsahaProps>({
       method: 'get',
       url: `aset-usaha?${filtersUrl}`,
@@ -44,7 +43,6 @@ export const useAsetUsahaApi = ({ initialTipe = '' }) => {
       method: 'get',
       url: `aset-usaha/${id}`,
     })
-    console.log(response?.asetUsaha)
     if (error) {
       console.error('Error fetching data:', error)
     } else {

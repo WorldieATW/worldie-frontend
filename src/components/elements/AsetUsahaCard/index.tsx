@@ -25,7 +25,8 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
           src={imgUrl}
           width={210}
           height={210}
-          className="rounded-lg"
+          className="rounded-lg h-[120px]"
+          objectFit='contain'
         />
       </div>
       <div className="p-4 gap-y-1 flex flex-col text-black max-w-40">

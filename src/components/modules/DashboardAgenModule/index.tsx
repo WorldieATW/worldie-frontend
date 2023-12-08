@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { AsetUsahaSection } from './sections'
 import { FaPlus } from 'react-icons/fa'
 import { useModal } from 'src/components/hooks/useModal'
-import { Modal } from './module-elements'
+import { CreateModal } from './module-elements'
+import { DashboardHeader } from '@elements'
 
 export const DashboardAgenModule: React.FC = () => {
   const [section, setSection] = useState('DESTINASI_WISATA')
@@ -10,7 +11,8 @@ export const DashboardAgenModule: React.FC = () => {
 
   return (
     <section className="px-7 flex flex-col gap2 lg:gap-6">
-      <div className="flex flex-col gap-y-8 font-poppins">
+      <DashboardHeader/>
+      <div className="flex flex-col gap-y-8 font-poppins border-t border-t-black/10 pt-6">
         <span className="font-paytone text-xl 2xl:text-2xl">My Assets</span>
         <div className="flex gap-x-8 2xl:gap-x-10">
           <button
@@ -52,7 +54,7 @@ export const DashboardAgenModule: React.FC = () => {
       </div>
 
       {isOpen && section === 'DESTINASI_WISATA' && (
-        <Modal
+        <CreateModal
           title="Create"
           tipe={section}
           onSave={() => {}}
@@ -60,7 +62,7 @@ export const DashboardAgenModule: React.FC = () => {
         />
       )}
       {isOpen && section === 'TRANSPORTASI' && (
-        <Modal
+        <CreateModal
           title="Create"
           tipe={section}
           onSave={() => {}}
@@ -68,7 +70,7 @@ export const DashboardAgenModule: React.FC = () => {
         />
       )}
       {isOpen && section === 'PENGINAPAN' && (
-        <Modal
+        <CreateModal
           title="Create"
           tipe={section}
           onSave={() => {}}

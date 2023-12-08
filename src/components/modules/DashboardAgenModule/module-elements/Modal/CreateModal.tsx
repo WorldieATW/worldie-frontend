@@ -3,7 +3,7 @@ import { ModalProps } from './interface'
 import { useAuthContext } from '@contexts'
 import toast from 'react-hot-toast'
 
-export const Modal: React.FC<ModalProps> = ({
+export const CreateModal: React.FC<ModalProps> = ({
   tipe,
   title,
   close,
