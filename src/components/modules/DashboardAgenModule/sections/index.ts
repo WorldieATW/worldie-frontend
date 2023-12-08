@@ -1,1 +1,1 @@
-export * from './DestinasiWisataSection'
+export * from './AsetUsahaSection'
