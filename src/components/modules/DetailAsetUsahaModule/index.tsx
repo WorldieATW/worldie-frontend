@@ -10,12 +10,14 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
 import { useModal } from 'src/components/hooks/useModal'
 import { DeleteModal } from '../DashboardAgenModule/module-elements/Modal/DeleteModal'
+import { UpdateModal } from '../DashboardAgenModule/module-elements/Modal/UpdateModal'
 
 export const DetailAsetUsahaModule: React.FC = () => {
-  const [expanded, setExpanded] = useState(false)
   const [rating, setRating] = useState(0)
+  const [expanded, setExpanded] = useState(false)
   const { user } = useAuthContext()
   const { isOpen, openModal, closeModal } = useModal()
+  const { isOpen: isUpdateOpen, openModal: openUpdateModal, closeModal: closeUpdateModal } = useModal()
   const { fetchAsetUsahaById, asetUsahaById } = useAsetUsahaApi({
     initialTipe: '',
   })
@@ -92,7 +94,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
               <div className="flex gap-4">
                 <button
                   className="flex flex-col group relative"
-                  onClick={openModal}
+                  onClick={openUpdateModal}
                 >
                   <BiEdit size={30} className="fill-royal" />
                   <span className="group-hover:opacity-100 text-sm p-1 transition-opacity bg-royal text-white rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">
@@ -135,6 +137,16 @@ export const DetailAsetUsahaModule: React.FC = () => {
           title="Are you sure you want to delete this Asset?"
           onSave={() => {}}
           close={closeModal}
+        />
+      )}
+
+      {isUpdateOpen && (
+        <UpdateModal
+          id={router.query.id as string}
+          asetUsaha={asetUsahaById}
+          title="Update"
+          onSave={() => {}}
+          close={closeUpdateModal}
         />
       )}
     </section>
