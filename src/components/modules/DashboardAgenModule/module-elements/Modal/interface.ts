@@ -1,4 +1,4 @@
-import { AsetUsaha } from "src/components/hooks/useAsetUsahaApi/interface"
+import { AsetUsaha } from 'src/components/hooks/useAsetUsahaApi/interface'
 
 export interface ModalProps {
   id?: string

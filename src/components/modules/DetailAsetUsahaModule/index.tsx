@@ -17,7 +17,11 @@ export const DetailAsetUsahaModule: React.FC = () => {
   const [expanded, setExpanded] = useState(false)
   const { user } = useAuthContext()
   const { isOpen, openModal, closeModal } = useModal()
-  const { isOpen: isUpdateOpen, openModal: openUpdateModal, closeModal: closeUpdateModal } = useModal()
+  const {
+    isOpen: isUpdateOpen,
+    openModal: openUpdateModal,
+    closeModal: closeUpdateModal,
+  } = useModal()
   const { fetchAsetUsahaById, asetUsahaById } = useAsetUsahaApi({
     initialTipe: '',
   })

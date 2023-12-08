@@ -154,7 +154,8 @@ export const UpdateModal: React.FC<ModalProps> = ({
                 </select>
               </>
             )}
-            {(asetUsaha?.tipe === 'PENGINAPAN' || asetUsaha?.tipe === 'DESTINASI_WISATA') && (
+            {(asetUsaha?.tipe === 'PENGINAPAN' ||
+              asetUsaha?.tipe === 'DESTINASI_WISATA') && (
               <>
                 <span>Street</span>
                 <input
