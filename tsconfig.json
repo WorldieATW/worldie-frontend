@@ -17,6 +17,7 @@
     "paths": {
       "@contexts": ["src/components/contexts"],
       "@elements": ["src/components/elements"],
+      "@models": ["src/components/models"],
       "@modules": ["src/components/modules"],
       "@utils": ["src/components/utils"]
     }

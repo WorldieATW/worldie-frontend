@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
   AuthContextProps,
   AuthContextProviderProps,
@@ -68,6 +68,22 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
     setIsLoading(false)
     return responseObj
   }
+
+  async function getUser() {
+    const accessToken = localStorage.getItem(
+      process.env.NEXT_PUBLIC_TOKEN_NAME as string
+    )
+    await refresh({
+      token: accessToken,
+      router: router,
+      setIsAuthenticated: setIsAuthenticated,
+      setUser: setUser,
+    })
+  }
+
+  useEffect(() => {
+    getUser()
+  }, [])
 
   const contextValue = {
     isAuthenticated,

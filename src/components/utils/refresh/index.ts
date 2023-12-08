@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast'
-import { GetRefreshInterface, RefreshProps } from './interface'
-import { useAuthContext } from '@contexts'
+import { RefreshProps } from './interface'
 import { parseJwt } from '../parseJwt'
+import axios from 'axios'
 
 export const refresh = async ({
   token,
@@ -9,21 +9,26 @@ export const refresh = async ({
   setIsAuthenticated,
   setUser,
 }: RefreshProps) => {
-  const { httpFetch } = useAuthContext()
-
   try {
     if (token) {
       if (validateJwtExp(token)) {
+        const { key } = parseJwt(token)
+        setIsAuthenticated(true)
+        setUser(key)
         return `Bearer ${token}`
       }
 
-      const { response } = await httpFetch<GetRefreshInterface>({
+      const { data } = await axios({
         method: 'get',
-        url: 'auth/refresh',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`,
+        headers: {
+          authorization: `Bearer ${token}`,
+          contentTyp: 'application/x-www-form-urlencoded',
+        },
       })
 
-      if (response?.responseStatus === 'SUCCESS') {
-        const { accessToken } = response
+      if (data.responseStatus === 'SUCCESS') {
+        const { accessToken } = data
         localStorage.setItem(
           process.env.NEXT_PUBLIC_TOKEN_NAME as string,
           accessToken
@@ -48,7 +53,7 @@ export const refresh = async ({
   }
 }
 
-export const validateJwtExp = (token: string | undefined | null) => {
+const validateJwtExp = (token: string | undefined | null) => {
   const rawToken = (token as string).includes('Bearer')
     ? (token as string).split(' ')[1]
     : (token as string)

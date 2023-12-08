@@ -50,7 +50,7 @@ export const RegisterModule = () => {
       setUser(key)
 
       toast.success('Register sukses!')
-      router.push('/protected')
+      router.push('/home')
     } else {
       const statusCode = error?.statusCode
       const message = error?.message

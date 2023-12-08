@@ -1,3 +1,5 @@
 export * from './contexts'
 export * from './elements'
+export * from './models'
 export * from './modules'
+export * from './utils'
