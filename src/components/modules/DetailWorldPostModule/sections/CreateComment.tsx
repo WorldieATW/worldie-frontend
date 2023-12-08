@@ -7,7 +7,10 @@ import toast from 'react-hot-toast'
 import { WorldPost } from '@models'
 import { CreateCommentProps } from '../interface'
 
-export const CreateComment: React.FC<CreateCommentProps> = ({ name, parentPostId }) => {
+export const CreateComment: React.FC<CreateCommentProps> = ({
+  name,
+  parentPostId,
+}) => {
   const { httpFetch } = useAuthContext()
   const [content, setContent] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)

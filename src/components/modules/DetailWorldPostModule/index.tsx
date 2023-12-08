@@ -54,7 +54,10 @@ export const DetailWorldPostModule = () => {
       {worldPost ? (
         <>
           <WorldPostCard worldPost={worldPost} />
-          <CreateComment name={worldPost.traveler.nama} parentPostId={worldPost.id} />
+          <CreateComment
+            name={worldPost.traveler.nama}
+            parentPostId={worldPost.id}
+          />
         </>
       ) : (
         <div className="px-7">
