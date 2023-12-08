@@ -4,7 +4,7 @@ export const DashboardHeader = () => {
   const { user } = useAuthContext()
 
   return (
-    <section className="flex flex-col gap-4 lg:gap-6">
+    <section className="flex flex-col gap-4 lg:gap-6 px-7 pb-4 lg:pb-12">
       <h1 className="font-poppins font-bold text-lg lg:text-3xl">
         {user?.nama}'s Dashboard
       </h1>
