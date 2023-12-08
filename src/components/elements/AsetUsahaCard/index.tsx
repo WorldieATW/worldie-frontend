@@ -17,7 +17,7 @@ export const AsetUsahaCard: React.FC<AsetUsahaCardProps> = ({
   return (
     <Link
       href={detailLink}
-      className="w-52 h-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg"
+      className="w-52 rounded-lg shadow font-poppins hover:scale-105 hover:shadow-lg"
     >
       <div className="flex justify-center">
         <Image
