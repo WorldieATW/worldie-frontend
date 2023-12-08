@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import { Skeleton, WorldPostCard } from '@elements'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
+import { CreateComment } from './sections/CreateComment'
 
 export const DetailWorldPostModule = () => {
   const {
@@ -51,7 +52,7 @@ export const DetailWorldPostModule = () => {
       </div>
 
       {worldPost ? (
-        <WorldPostCard worldPost={worldPost} />
+        <><WorldPostCard worldPost={worldPost} /><CreateComment name={worldPost.traveler.nama} /></>
       ) : (
         <div className="px-7">
           <Skeleton height={400} />
