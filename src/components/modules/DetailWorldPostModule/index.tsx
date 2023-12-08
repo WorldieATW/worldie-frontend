@@ -8,6 +8,7 @@ import { Skeleton, WorldPostCard } from '@elements'
 import { BsArrowLeft } from 'react-icons/bs'
 import Link from 'next/link'
 import { CreateComment } from './sections/CreateComment'
+import { Comments } from './sections/Comments'
 
 export const DetailWorldPostModule = () => {
   const {
@@ -16,6 +17,8 @@ export const DetailWorldPostModule = () => {
   const router = useRouter()
   const { httpFetch } = useAuthContext()
   const [worldPost, setWorldPost] = useState<WorldPost>()
+  const [children, setChildren] = useState<WorldPost[]>([])
+  const [commentsChanged, setCommentsChanged] = useState<boolean>(false)
 
   const getWorldPost = async () => {
     const { response, error } = await httpFetch<GetDetailWorldPostResponse>({
@@ -26,6 +29,25 @@ export const DetailWorldPostModule = () => {
     if (response) {
       const { worldPost } = response
       setWorldPost(worldPost)
+
+      if (worldPost.childrenPost) {
+        const childPost = [] as WorldPost[]
+        for (const comment of worldPost.childrenPost) {
+          const { response, error: _error } =
+            await httpFetch<GetDetailWorldPostResponse>({
+              method: 'get',
+              url: `world-post-manager/${comment.id}`,
+            })
+
+          if (response) {
+            const { worldPost } = response
+            childPost.push(worldPost)
+          } else {
+            toast.error('Maaf, telah terjadi kesalahan')
+          }
+        }
+        setChildren(childPost)
+      }
     } else {
       const statusCode = error?.statusCode
       if (statusCode === 404) {
@@ -40,7 +62,7 @@ export const DetailWorldPostModule = () => {
 
   useEffect(() => {
     getWorldPost()
-  }, [])
+  }, [commentsChanged])
 
   return (
     <section className="flex flex-col gap-3">
@@ -57,6 +79,13 @@ export const DetailWorldPostModule = () => {
           <CreateComment
             name={worldPost.traveler.nama}
             parentPostId={worldPost.id}
+            commentsChanged={commentsChanged}
+            setCommentsChanged={setCommentsChanged}
+          />
+          <Comments
+            comments={children}
+            commentsChanged={commentsChanged}
+            setCommentsChanged={setCommentsChanged}
           />
         </>
       ) : (
