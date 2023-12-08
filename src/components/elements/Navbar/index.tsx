@@ -21,11 +21,14 @@ export const Navbar = () => {
 
   return (
     <div className="flex font-paytone justify-between w-full bg-[#4468E2] items-center px-8 py-2">
-        <Link href="/home">
-          <Image alt="logo" src="/logo.svg" width={50} height={50} />
-        </Link>
+      <Link href="/home">
+        <Image alt="logo" src="/logo.svg" width={50} height={50} />
+      </Link>
       {isAuthenticated && (
-        <button className="bg-purple-500 py-1 px-4 rounded-md" onClick={handleLogout}>
+        <button
+          className="bg-purple-500 py-1 px-4 rounded-md"
+          onClick={handleLogout}
+        >
           Logout
         </button>
       )}
@@ -36,7 +39,9 @@ export const Navbar = () => {
             <button className="bg-green-500 py-1 px-4 rounded-md">Login</button>
           </Link>
           <Link href="/register">
-            <button className="bg-green-500 py-1 px-4 rounded-md">Register</button>
+            <button className="bg-green-500 py-1 px-4 rounded-md">
+              Register
+            </button>
           </Link>
         </div>
       )}

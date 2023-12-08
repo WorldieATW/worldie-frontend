@@ -1,4 +1,4 @@
-import { Navbar } from "@elements";
+import { Navbar } from '@elements'
 
 export default function Home() {
   return (
