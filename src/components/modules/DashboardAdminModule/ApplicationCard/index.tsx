@@ -34,7 +34,7 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
   }
 
   return (
-    <div className="flex justify-center items-center gap-16 font-poppins">
+    <div className="flex justify-center items-center gap-8 xl:gap-16 font-poppins">
       <span className="text-royal font-semibold">{index}</span>
       <div className="flex flex-col gap-2">
         <span className="font-bold">{application.nama}</span>
