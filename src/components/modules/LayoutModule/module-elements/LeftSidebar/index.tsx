@@ -23,7 +23,7 @@ export const LeftSidebar: React.FC = () => {
       } else if (user.role === 'ADMIN') {
         return (
           <LeftSideBarContent
-            link=""
+            link="/dashboard/admin"
             Icon={MdDashboard}
             text="Dashboard Admin"
           />

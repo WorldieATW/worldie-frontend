@@ -1,0 +1,18 @@
+import { useAuthContext } from '@contexts'
+
+export const DashboardHeader = () => {
+  const { user } = useAuthContext()
+
+  return (
+    <section className="flex flex-col gap-4 lg:gap-6">
+      <h1 className="font-poppins font-bold text-lg lg:text-3xl">
+        {user?.nama}'s Dashboard
+      </h1>
+
+      <span className="font-poppins font-bold text-lg lg:text-3xl pt-4 lg:pt-12">
+        Welcome, {user?.nama}!
+      </span>
+      <span className="font-semibold">Semoga aktivitas Anda menyenangkan </span>
+    </section>
+  )
+}

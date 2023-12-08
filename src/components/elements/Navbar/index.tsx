@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useAuthContext } from '@contexts'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -19,10 +20,15 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="flex font-paytone justify-between w-full bg-royal">
-      <span>Worldie Navbarnya Keren Banget</span>
+    <div className="flex font-paytone justify-between w-full bg-[#4468E2] items-center px-8 py-2">
+      <Link href="/home">
+        <Image alt="logo" src="/logo.svg" width={50} height={50} />
+      </Link>
       {isAuthenticated && (
-        <button className="bg-purple-500" onClick={handleLogout}>
+        <button
+          className="bg-purple-500 py-1 px-4 rounded-md"
+          onClick={handleLogout}
+        >
           Logout
         </button>
       )}
@@ -30,10 +36,12 @@ export const Navbar = () => {
       {!isAuthenticated && (
         <div className="flex gap-4">
           <Link href="/login">
-            <button className="bg-green-500">Login</button>
+            <button className="bg-green-500 py-1 px-4 rounded-md">Login</button>
           </Link>
           <Link href="/register">
-            <button className="bg-green-500">Register</button>
+            <button className="bg-green-500 py-1 px-4 rounded-md">
+              Register
+            </button>
           </Link>
         </div>
       )}
