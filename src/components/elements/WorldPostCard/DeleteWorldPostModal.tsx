@@ -9,17 +9,22 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
-import { DeleteWorldPostModalProps } from '../../modules/WorldPostModule/interface'
+import { DeleteWorldPostModalProps } from './interface'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { useAuthContext } from '@contexts'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
 
 export const DeleteWorldPostModal: React.FC<DeleteWorldPostModalProps> = ({
+  isDetail,
   isOpen,
   setIsOpen,
   onClose,
   worldPostId,
+  worldPostsChanged,
+  setWorldPostsChanged,
 }) => {
+  const router = useRouter()
   const { httpFetch } = useAuthContext()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -32,7 +37,14 @@ export const DeleteWorldPostModal: React.FC<DeleteWorldPostModalProps> = ({
     })
 
     if (response) {
+      if (setWorldPostsChanged) {
+        setWorldPostsChanged(!worldPostsChanged)
+      }
+
       setIsOpen(!isOpen)
+
+      if (isDetail) router.push('/home')
+
       toast.success('World Post berhasil dihapus')
     } else {
       const statusCode = error?.statusCode

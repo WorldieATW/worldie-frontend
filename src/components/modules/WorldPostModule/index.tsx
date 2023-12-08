@@ -5,12 +5,12 @@ import { GetWorldPostsResponse } from './interface'
 import toast from 'react-hot-toast'
 import { Skeleton, WorldPostCard } from '@elements'
 import { WorldPost } from '@models'
-import Link from 'next/link'
 
 export const WorldPostModule = () => {
   const { httpFetch } = useAuthContext()
   const [worldPosts, setWorldPosts] = useState<WorldPost[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [worldPostsChanged, setWorldPostsChanged] = useState<boolean>(false)
 
   const getWorldPosts = async () => {
     setIsLoading(true)
@@ -32,7 +32,7 @@ export const WorldPostModule = () => {
 
   useEffect(() => {
     getWorldPosts()
-  }, [])
+  }, [worldPostsChanged])
 
   return (
     <>
@@ -40,7 +40,10 @@ export const WorldPostModule = () => {
         <div className="flex flex-col gap-1">
           <h1 className="font-paytone text-lg px-7">World Posts</h1>
           <hr />
-          <CreateWorldPost />
+          <CreateWorldPost
+            worldPostsChanged={worldPostsChanged}
+            setWorldPostsChanged={setWorldPostsChanged}
+          />
           <hr className="h-2 bg-teal-100 border-none" />
         </div>
 
@@ -51,12 +54,12 @@ export const WorldPostModule = () => {
             </div>
           ) : (
             worldPosts.map((worldPost) => (
-              <Link
-                href={`world-post/${worldPost.id}`}
-                className="bg-white hover:bg-[#4468E2]/[0.05]"
-              >
-                <WorldPostCard worldPost={worldPost} />
-              </Link>
+              <WorldPostCard
+                worldPost={worldPost}
+                worldPostsChanged={worldPostsChanged}
+                setWorldPostsChanged={setWorldPostsChanged}
+                isDetail={false}
+              />
             ))
           )}
         </div>

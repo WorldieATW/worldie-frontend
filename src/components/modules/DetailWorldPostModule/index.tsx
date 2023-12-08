@@ -53,7 +53,7 @@ export const DetailWorldPostModule = () => {
 
       {worldPost ? (
         <>
-          <WorldPostCard worldPost={worldPost} />
+          <WorldPostCard worldPost={worldPost} isDetail={true} />
           <CreateComment
             name={worldPost.traveler.nama}
             parentPostId={worldPost.id}
