@@ -15,7 +15,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
   commentsChanged,
   setCommentsChanged,
   parentChanged,
-  setParentChanged
+  setParentChanged,
 }) => {
   const router = useRouter()
   const { user } = useAuthContext()

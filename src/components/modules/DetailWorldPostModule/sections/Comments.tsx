@@ -8,7 +8,7 @@ export const Comments: React.FC<CommentsProps> = ({
   commentsChanged,
   setCommentsChanged,
   parentChanged,
-  setParentChanged
+  setParentChanged,
 }) => {
   return (
     <section className="flex flex-col gap-3">
