@@ -2,9 +2,9 @@ import { useAuthContext } from '@contexts'
 import { useEffect, useState } from 'react'
 import { AsetUsaha, AsetUsahaProps } from './interface'
 
-export const useAsetUsahaApi = ({ initialTipe = '' }) => {
+export const useAsetUsahaApi = ({ initialTipe = '', initialAgenId = '' }) => {
   const { httpFetch } = useAuthContext()
-  const [agenId, setAgenId] = useState('')
+  const [agenId, setAgenId] = useState(initialAgenId)
   const [tipe, setTipe] = useState(initialTipe)
   const [jenisKendaraan, setJenisKendaraan] = useState('')
   const [jenisPenginapan, setJenisPenginapan] = useState('')

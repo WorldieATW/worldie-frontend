@@ -9,9 +9,8 @@ export const UpdateModal: React.FC<ModalProps> = ({
   title,
   close,
   onSave,
-  disableSave = false,
 }) => {
-  const { httpFetch } = useAuthContext()
+  const { httpFetch, isLoading } = useAuthContext()
   const [offsetY, setOffsetY] = useState(0)
   const [offsetX, setOffsetX] = useState(0)
   const [nama, setNama] = useState(asetUsaha?.nama)
@@ -196,7 +195,7 @@ export const UpdateModal: React.FC<ModalProps> = ({
           </button>
           <button
             className="px-3 py-2 bg-royal rounded-lg text-white hover:bg-opacity-90"
-            disabled={disableSave}
+            disabled={isLoading}
             onClick={handleSave}
           >
             Save

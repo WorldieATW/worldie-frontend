@@ -9,11 +9,10 @@ export const DeleteModal: React.FC<ModalProps> = ({
   title,
   close,
   onSave,
-  disableSave = false,
 }) => {
   const [offsetY, setOffsetY] = useState(0)
   const [offsetX, setOffsetX] = useState(0)
-  const { httpFetch } = useAuthContext()
+  const { httpFetch, isLoading } = useAuthContext()
   const router = useRouter()
 
   const handleSave = async () => {
@@ -71,7 +70,7 @@ export const DeleteModal: React.FC<ModalProps> = ({
           </button>
           <button
             className="px-3 py-2 bg-[#FF0000] rounded-lg text-white hover:bg-opacity-90"
-            disabled={disableSave}
+            disabled={isLoading}
             onClick={handleSave}
           >
             Delete

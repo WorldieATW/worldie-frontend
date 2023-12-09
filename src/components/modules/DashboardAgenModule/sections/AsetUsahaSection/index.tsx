@@ -23,6 +23,7 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
     fetchAllAsetUsaha,
   } = useAsetUsahaApi({
     initialTipe: tipe,
+    initialAgenId: user?.id,
   })
 
   useEffect(() => {
