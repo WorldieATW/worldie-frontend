@@ -1,8 +1,8 @@
-import { IconType } from 'react-icons'
+import { ReactElement } from 'react'
 
 export interface LeftSidebarContentProps {
   link: string
-  Icon: IconType
+  icon: ReactElement
   text: string
 }
 

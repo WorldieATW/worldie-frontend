@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
   link,
-  Icon,
+  icon,
   text,
 }) => {
   const [hover, setHover] = useState(false)
@@ -21,9 +21,11 @@ export const LeftSideBarContent: React.FC<LeftSidebarContentProps> = ({
         router.asPath === link ? 'text-royal' : ''
       } flex items-center gap-x-4 hover:text-royal`}
     >
-      {React.cloneElement(<Icon fill="black" size={20} />, {
+      {React.cloneElement(icon, {
         className:
           router.asPath === link || hover ? ' fill-royal stroke-royal' : '',
+        size: 20,
+        fill: 'black',
       })}
       <span>{text}</span>
     </Link>

@@ -56,9 +56,7 @@ export const UpdateModal: React.FC<ModalProps> = ({
       if (statusCode === 404) {
         toast.error('Sorry, please check your inputs again')
       } else if (statusCode === 403) {
-        toast.error(
-          'You are not allowed to update the Asset'
-        )
+        toast.error('You are not allowed to update the Asset')
       } else {
         toast.error('Sorry, an error has occurred')
       }

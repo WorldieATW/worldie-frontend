@@ -21,7 +21,6 @@ export const DeleteModal: React.FC<ModalProps> = ({
       url: `aset-usaha/${id}`,
       isAuthorized: true,
     })
-    console.log(`aset-usaha/${id}`)
     if (response) {
       toast.success(response.responseMessage)
       router.back()
