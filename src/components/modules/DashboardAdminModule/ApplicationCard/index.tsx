@@ -36,8 +36,13 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
   return (
     <div className="flex justify-center items-center gap-8 xl:gap-16 font-poppins">
       <span className="text-xl text-royal font-semibold">{index}</span>
-      <div className="flex flex-col gap-2">
-        <span className="font-bold">{application.nama}</span>
+      <div className="flex flex-col gap-2 w-[20rem]">
+        <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+          {application.nama}
+        </span>
+        <span className="whitespace-nowrap overflow-hidden text-ellipsis">
+          {application.email}
+        </span>
         <span className="border-b-2 border-black/5 text-grayjoy">
           Applied on {date.getDate()} {MONTHS[date.getMonth()]}{' '}
           {date.getFullYear()}
