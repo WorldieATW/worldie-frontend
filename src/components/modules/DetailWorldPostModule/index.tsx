@@ -19,6 +19,7 @@ export const DetailWorldPostModule = () => {
   const [worldPost, setWorldPost] = useState<WorldPost>()
   const [children, setChildren] = useState<WorldPost[]>([])
   const [commentsChanged, setCommentsChanged] = useState<boolean>(false)
+  const [parentChanged, setParentChanged] = useState<boolean>(false)
 
   const getWorldPost = async () => {
     const { response, error } = await httpFetch<GetDetailWorldPostResponse>({
@@ -62,7 +63,7 @@ export const DetailWorldPostModule = () => {
 
   useEffect(() => {
     getWorldPost()
-  }, [commentsChanged])
+  }, [commentsChanged, parentChanged])
 
   return (
     <section className="flex flex-col gap-3">
@@ -75,7 +76,10 @@ export const DetailWorldPostModule = () => {
 
       {worldPost ? (
         <>
-          <WorldPostCard worldPost={worldPost} isDetail={true} />
+          <WorldPostCard
+            worldPost={worldPost} 
+            isDetail={true}
+          />
           <CreateComment
             name={worldPost.traveler.nama}
             parentPostId={worldPost.id}
@@ -84,9 +88,10 @@ export const DetailWorldPostModule = () => {
           />
           <Comments
             comments={children}
-            parentId={worldPost.id}
             commentsChanged={commentsChanged}
             setCommentsChanged={setCommentsChanged}
+            parentChanged={parentChanged}
+            setParentChanged={setParentChanged}
           />
         </>
       ) : (

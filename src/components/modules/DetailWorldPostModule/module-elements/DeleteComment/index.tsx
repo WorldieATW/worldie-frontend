@@ -17,7 +17,6 @@ import { useRouter } from 'next/router'
 
 export const DeleteComment: React.FC<DeleteCommentProps> = ({
   worldPostId,
-  parentId,
   isDetail,
   isOpen,
   setIsOpen,
@@ -43,7 +42,7 @@ export const DeleteComment: React.FC<DeleteCommentProps> = ({
       }
 
       setIsOpen(!isOpen)
-      if (isDetail) router.push(`world-post/${parentId}`)
+      if (isDetail) router.push('/home')
       toast.success('Comment successfully deleted')
     } else {
       const statusCode = error?.statusCode

@@ -12,9 +12,10 @@ import { DeleteComment } from '../DeleteComment'
 export const CommentCard: React.FC<CommentCardProps> = ({
   isDetail,
   worldPost,
-  parentId,
   commentsChanged,
   setCommentsChanged,
+  parentChanged,
+  setParentChanged
 }) => {
   const router = useRouter()
   const { user } = useAuthContext()
@@ -31,7 +32,10 @@ export const CommentCard: React.FC<CommentCardProps> = ({
 
   const handleDeleteWorldPostButton = () => setShowDeleteModal(!showDeleteModal)
 
-  const handleCardButton = () => router.push(`${worldPost.id}`)
+  const handleCardButton = () => {
+    setParentChanged(!parentChanged)
+    router.push(`${worldPost.id}`)
+  }
 
   return (
     <>
@@ -96,7 +100,6 @@ export const CommentCard: React.FC<CommentCardProps> = ({
       </div>
       <DeleteComment
         worldPostId={worldPost.id}
-        parentId={parentId}
         isDetail={isDetail}
         isOpen={showDeleteModal}
         setIsOpen={setShowDeleteModal}

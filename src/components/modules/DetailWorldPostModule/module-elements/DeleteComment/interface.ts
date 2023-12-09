@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from 'react'
 
 export interface DeleteCommentProps {
   worldPostId: string
-  parentId: string
   isDetail: boolean
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
