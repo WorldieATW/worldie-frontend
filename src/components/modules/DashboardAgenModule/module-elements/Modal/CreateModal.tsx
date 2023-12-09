@@ -38,7 +38,7 @@ export const CreateModal: React.FC<ModalProps> = ({
       negara: negara,
     }
 
-    const { response } = await httpFetch({
+    const { response, error } = await httpFetch({
       method: 'post',
       url: `aset-usaha/${handleUrl()}`,
       isAuthorized: true,
@@ -48,7 +48,14 @@ export const CreateModal: React.FC<ModalProps> = ({
     if (response) {
       toast.success(response.responseMessage)
     } else {
-      toast.error('Pastikan sudah benar gan')
+      const statusCode = error?.statusCode
+      if (statusCode === 404) {
+        toast.error('Sorry, please check your inputs again')
+      } else if (statusCode === 403) {
+        toast.error('You are not allowed to create Asset')
+      } else {
+        toast.error('Sorry, an error has occurred')
+      }
     }
 
     onSave()

@@ -42,7 +42,7 @@ export const UpdateModal: React.FC<ModalProps> = ({
       negara: negara,
     }
 
-    const { response } = await httpFetch({
+    const { response, error } = await httpFetch({
       method: 'patch',
       url: `aset-usaha/${handleUrl()}/${id}`,
       isAuthorized: true,
@@ -52,7 +52,16 @@ export const UpdateModal: React.FC<ModalProps> = ({
     if (response) {
       toast.success(response.responseMessage)
     } else {
-      toast.error('Pastikan sudah benar gan')
+      const statusCode = error?.statusCode
+      if (statusCode === 404) {
+        toast.error('Sorry, please check your inputs again')
+      } else if (statusCode === 403) {
+        toast.error(
+          'You are not allowed to update the Asset'
+        )
+      } else {
+        toast.error('Sorry, an error has occurred')
+      }
     }
 
     onSave()
