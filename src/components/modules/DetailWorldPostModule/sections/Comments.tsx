@@ -16,7 +16,7 @@ export const Comments: React.FC<CommentsProps> = ({
       </div>
 
       {comments ? (
-        (comments.length > 0) ? (
+        comments.length > 0 ? (
           comments.map((worldPost) => (
             <CommentCard
               key={worldPost.id}
@@ -29,7 +29,9 @@ export const Comments: React.FC<CommentsProps> = ({
         ) : (
           <div className="flex flex-col gap-3 items-center py-7">
             <Image src="/no-comment-yet.png" boxSize="200px" />
-            <p className="font-semibold text-m">No comments yet. Start the conversation!</p>
+            <p className="font-semibold text-m">
+              No comments yet. Start the conversation!
+            </p>
           </div>
         )
       ) : (
