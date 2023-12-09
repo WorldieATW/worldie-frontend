@@ -1,5 +1,5 @@
 import { useAuthContext, useLayoutContext } from '@contexts'
-import { AsetUsahaCard, Select } from '@elements'
+import { AsetUsahaCard } from '@elements'
 import { useEffect } from 'react'
 import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
 import { AsetUsahaSectionProps } from './interface'
@@ -8,6 +8,7 @@ import { JENIS_PENGINAPAN_OPTIONS } from 'src/components/modules/PenginapanModul
 import { useModal } from 'src/components/hooks/useModal'
 import { FaPlus } from 'react-icons/fa'
 import { CreateModal } from '../../module-elements'
+import { TypeChip } from '../../module-elements/TypeChip'
 
 export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
   const { user } = useAuthContext()
@@ -31,6 +32,10 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
   useEffect(() => {
     if (tipe === 'TRANSPORTASI') setJenisPenginapan('')
     if (tipe === 'PENGINAPAN') setJenisKendaraan('')
+    if (tipe === 'DESTINASI_WISATA') {
+      setJenisKendaraan('')
+      setJenisPenginapan('')
+    }
     setTipe(tipe)
   }, [tipe])
 
@@ -47,35 +52,31 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
       </div>
 
       {tipe === 'TRANSPORTASI' && (
-        <div className="flex justify-end">
-          <Select
-            options={JENIS_KENDARAAN_OPTIONS}
-            onChange={(value) => {
-              if (value === 'ALL') {
-                setJenisKendaraan('')
-              } else {
-                setJenisKendaraan(value)
-              }
-              setJenisPenginapan('')
-            }}
-          />
-        </div>
+        <TypeChip
+          options={JENIS_KENDARAAN_OPTIONS}
+          onChange={(value) => {
+            if (value === 'ALL') {
+              setJenisKendaraan('')
+            } else {
+              setJenisKendaraan(value)
+            }
+            setJenisPenginapan('')
+          }}
+        />
       )}
 
       {tipe === 'PENGINAPAN' && (
-        <div className="flex justify-end">
-          <Select
-            options={JENIS_PENGINAPAN_OPTIONS}
-            onChange={(value) => {
-              if (value === 'ALL') {
-                setJenisPenginapan('')
-              } else {
-                setJenisPenginapan(value)
-              }
-              setJenisKendaraan('')
-            }}
-          />
-        </div>
+        <TypeChip
+          options={JENIS_PENGINAPAN_OPTIONS}
+          onChange={(value) => {
+            if (value === 'ALL') {
+              setJenisPenginapan('')
+            } else {
+              setJenisPenginapan(value)
+            }
+            setJenisKendaraan('')
+          }}
+        />
       )}
 
       <div className="flex flex-wrap gap-6">

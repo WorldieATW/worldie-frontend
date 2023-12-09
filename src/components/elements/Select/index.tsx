@@ -3,8 +3,8 @@ import { SelectProps } from './interface'
 import { useOnClickOutside } from 'usehooks-ts'
 
 export const Select: React.FC<SelectProps> = ({ options, onChange }) => {
-  const [selectedValue, setSelectedValue] = useState<string>()
-  const [selectedOption, setSelectedOption] = useState<string>(options[0].name)
+  const [selectedValue, setSelectedValue] = useState()
+  const [selectedOption, setSelectedOption] = useState(options[0].name)
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const ref = useRef(null)
 
