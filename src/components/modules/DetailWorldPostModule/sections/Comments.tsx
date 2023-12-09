@@ -5,8 +5,9 @@ import { Image, Skeleton } from '@chakra-ui/react'
 
 export const Comments: React.FC<CommentsProps> = ({
   comments,
-  //commentsChanged,
-  //setCommentsChanged,
+  parentId,
+  commentsChanged,
+  setCommentsChanged,
 }) => {
   return (
     <section className="flex flex-col gap-3">
@@ -17,12 +18,13 @@ export const Comments: React.FC<CommentsProps> = ({
 
       {comments ? (
         comments.length > 0 ? (
-          comments.map((worldPost) => (
+          comments.map((comment) => (
             <CommentCard
-              key={worldPost.id}
-              worldPost={worldPost}
-              //commentsChanged={commentsChanged}
-              //setCommentsChanged={setCommentsChanged}
+              key={comment.id}
+              worldPost={comment}
+              parentId={parentId}
+              commentsChanged={commentsChanged}
+              setCommentsChanged={setCommentsChanged}
               isDetail={false}
             />
           ))

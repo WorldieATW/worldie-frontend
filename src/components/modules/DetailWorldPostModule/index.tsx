@@ -84,6 +84,7 @@ export const DetailWorldPostModule = () => {
           />
           <Comments
             comments={children}
+            parentId={worldPost.id}
             commentsChanged={commentsChanged}
             setCommentsChanged={setCommentsChanged}
           />

@@ -14,6 +14,7 @@ export interface CreateCommentProps {
 
 export interface CommentsProps {
   comments: WorldPost[]
+  parentId: string
   commentsChanged: boolean
   setCommentsChanged: Dispatch<SetStateAction<boolean>>
 }

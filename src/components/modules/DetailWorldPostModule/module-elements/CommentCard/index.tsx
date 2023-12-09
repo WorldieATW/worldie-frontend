@@ -7,10 +7,14 @@ import { useAuthContext } from '@contexts'
 import { useRouter } from 'next/router'
 import { getFileCloudinary, getImageFileTypes } from '@utils'
 import { CommentCardProps } from './interface'
+import { DeleteComment } from '../DeleteComment'
 
 export const CommentCard: React.FC<CommentCardProps> = ({
   isDetail,
   worldPost,
+  parentId,
+  commentsChanged,
+  setCommentsChanged,
 }) => {
   const router = useRouter()
   const { user } = useAuthContext()
@@ -90,8 +94,16 @@ export const CommentCard: React.FC<CommentCardProps> = ({
         </div>
         <hr />
       </div>
-
-      {/* <DeleteCommentModal /> */}
+      <DeleteComment
+        worldPostId={worldPost.id}
+        parentId={parentId}
+        isDetail={isDetail}
+        isOpen={showDeleteModal}
+        setIsOpen={setShowDeleteModal}
+        onClose={handleDeleteWorldPostButton}
+        commentsChanged={commentsChanged}
+        setCommentsChanged={setCommentsChanged}
+      />
     </>
   )
 }
