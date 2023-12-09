@@ -17,7 +17,7 @@ export const LeftSidebar: React.FC = () => {
         return (
           <LeftSideBarContent
             link="/dashboard/agen"
-            icon={<MdDashboard/>}
+            icon={<MdDashboard />}
             text="Dashboard Agen"
           />
         )
@@ -25,13 +25,13 @@ export const LeftSidebar: React.FC = () => {
         return (
           <LeftSideBarContent
             link="/dashboard/admin"
-            icon={<MdDashboard/>}
+            icon={<MdDashboard />}
             text="Dashboard Admin"
           />
         )
       }
     }
-    return <LeftSideBarContent link="" icon={<RiUser3Fill/>} text="Profile" />
+    return <LeftSideBarContent link="" icon={<RiUser3Fill />} text="Profile" />
   }
 
   return (
