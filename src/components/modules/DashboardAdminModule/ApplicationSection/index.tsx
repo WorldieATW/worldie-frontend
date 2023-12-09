@@ -33,18 +33,19 @@ export const ApplicationSection = () => {
         <span className="text-royal font-semibold">{applications.length}</span>{' '}
         application(s) on waiting list
       </span>
-
-      <div className="flex flex-col w-fit gap-8 bg-[#F6F8FA] rounded-2xl py-8 px-8 xl:px-16">
-        {applications.map((a, i) => {
-          return (
-            <ApplicationCard
-              application={a}
-              index={i + 1}
-              onAction={getAllPendaftaranAgen}
-            />
-          )
-        })}
-      </div>
+      {applications.length !== 0 && (
+        <div className="flex flex-col w-fit gap-8 bg-[#F6F8FA] rounded-2xl py-8 px-8 xl:px-16">
+          {applications.map((a, i) => {
+            return (
+              <ApplicationCard
+                application={a}
+                index={i + 1}
+                onAction={getAllPendaftaranAgen}
+              />
+            )
+          })}
+        </div>
+      )}
     </section>
   )
 }
