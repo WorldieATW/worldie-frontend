@@ -20,6 +20,7 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@nextui-org/react": "^2.2.9",
     "@types/crypto-js": "^4.2.1",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "axios": "^1.6.2",
