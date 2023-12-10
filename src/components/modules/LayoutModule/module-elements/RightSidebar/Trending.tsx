@@ -6,7 +6,7 @@ export const Trending: React.FC<TrendingProps> = ({ num, count, nama }) => {
       <span className="px-4 text-sm text-opacity-70 text-grayjoy">{`${
         num + 1
       }. Trending`}</span>
-      <span className="px-4 font-bold">{`#${nama}`}</span>
+      <span className="px-4 font-bold text-ellipsis overflow-hidden whitespace-nowrap">{`#${nama}`}</span>
       <span className="px-4 text-sm text-opacity-70 text-grayjoy">{`${count} Reviews`}</span>
     </div>
   )
