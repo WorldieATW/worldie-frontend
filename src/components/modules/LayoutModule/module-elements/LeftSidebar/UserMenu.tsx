@@ -40,11 +40,13 @@ export const UserMenu: React.FC = () => {
         </button>
       )}
       <div
-        className={`${bgColor} flex hover:bg-grayjoy/20 p-4 rounded-full justify-between items-center gap-x-4`}
+        className={`${bgColor} flex hover:bg-grayjoy/20 p-4 rounded-full justify-between items-center gap-x-4 w-52`}
       >
         <div className="flex items-center gap-x-4">
           <HiUserCircle fill="black" size={30} />
-          <span>{user ? getFirstName(user.nama) : 'Undefined'}</span>
+          <span className="w-24 text-ellipsis whitespace-nowrap overflow-hidden">
+            {user?.nama ? getFirstName(user?.nama) : ''}
+          </span>
         </div>
         <div>
           <HiMiniEllipsisHorizontal size={20} className="hover:fill-royal" />
