@@ -24,12 +24,16 @@ export const Navbar = () => {
         <span className="font-paytone text-2xl text-white">Worldie</span>
       </Link>
       {isAuthenticated && (
-        <button
-          className="bg-transparent py-2 px-7 rounded-3xl font-bold drop-shadow-lg text-white"
-          onClick={handleLogout}
-        >
-          Sign Out
-        </button>
+        <div className="flex gap-4 text-white">
+          <Link href="/home">
+            <button className="bg-transparent py-2 px-7 rounded-3xl font-bold drop-shadow-lg">
+              Home
+            </button>
+          </Link>
+          <button className="bg-[#4468E2] py-2 px-7 rounded-3xl font-bold drop-shadow-lg" onClick={handleLogout}>
+            Sign Out
+          </button>
+        </div>
       )}
 
       {!isAuthenticated && (
