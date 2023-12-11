@@ -135,6 +135,9 @@ export const RegisterModule = () => {
                 onChange={(e) => setRole(e.target.value)}
                 className="dropdown-rating text-center text-[#7C838A] border-2 rounded-lg py-0.5"
               >
+                <option value="" disabled selected>
+                  Choose your role
+                </option>
                 <option value="TRAVELER">TRAVELER</option>
                 <option value="AGEN">AGEN</option>
               </select>
