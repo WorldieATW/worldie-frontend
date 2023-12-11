@@ -5,12 +5,16 @@ import { useRouter } from 'next/router'
 import { Button } from '@chakra-ui/react'
 import toast from 'react-hot-toast'
 
-export const ReviewCard: React.FC = ({ onClose }) => {
+interface ReviewCardProps {
+  onClose: () => void
+}
+
+export const ReviewCard: React.FC<ReviewCardProps> = ({ onClose }) => {
   const { httpFetch } = useAuthContext()
   const router = useRouter()
   const { id } = router.query
-  const [title, setTitle] = useState<string>()
-  const [review, setReview] = useState<string>()
+  const [title, setTitle] = useState<string>('')
+  const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -23,10 +27,14 @@ export const ReviewCard: React.FC = ({ onClose }) => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     setIsLoading(true)
-    // Define the request body
 
     if (rating < 1) {
       toast.error('Rating must be at least 1')
+      setIsLoading(false)
+      return
+    }
+    if (review === '' || title === '') {
+      toast.error('Title and review cannot be empty')
       setIsLoading(false)
       return
     }
@@ -38,21 +46,19 @@ export const ReviewCard: React.FC = ({ onClose }) => {
       konten: review,
     }
 
-    const body = JSON.stringify(requestBody)
-    console.log(body)
     try {
       // Make the HTTP request using httpFetch
       const { response, error } = await httpFetch({
-        method: 'post', // Use 'post' method for creating a new review
-        url: 'review', // Specify the API endpoint URL
+        method: 'post',
+        url: 'review',
         body: requestBody,
       })
 
       if (response) {
         toast.success(response.responseMessage)
       } else {
-        const statusCode = error?.status
-        const msg = String(error?.data.message)
+        const statusCode = error?.data.statusCode
+        const msg = String(error?.message)
         if (statusCode === 400) {
           toast.error(msg)
         } else if (statusCode === 403) {

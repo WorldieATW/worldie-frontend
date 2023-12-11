@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '@contexts'
-// import { CreateWorldPost } from './sections/CreateWorldPost'
 import { GetReviewResponse } from './interface'
-import toast from 'react-hot-toast'
-import { Skeleton, WorldPostCard } from '@elements'
-import { Review } from '@models'
+// import { Review } from '@models'
 import { Button, Spinner } from '@chakra-ui/react'
 import { useModal } from 'src/components/hooks/useModal'
-import { ReviewCard } from '@elements'
-import { BackButton } from '@elements'
+import { ReviewCard, BackButton } from '@elements'
 import { useRouter } from 'next/router'
 
 export const ReviewModule = () => {
   const { httpFetch } = useAuthContext()
   const router = useRouter()
-  const [reviews, setReviews] = useState<Review[]>([])
+  // const [reviews, setReviews] = useState<Review[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { isOpen, openModal, closeModal } = useModal()
   const { nama } = router.query
@@ -58,7 +54,7 @@ export const ReviewModule = () => {
         } else {
           setTotalPages(Math.ceil(response?.totalCount / 10))
         }
-        setReviews(response?.reviews || [])
+        // setReviews(response?.reviews || [])
       }
     } catch (err) {
       console.error('An unexpected error occurred:', err)

@@ -5,5 +5,5 @@ export interface ReviewCardProps {
   isDetail: boolean
   review: Review
   reviewChanged?: boolean
-  setWorldPostsChanged?: Dispatch<SetStateAction<boolean>>
+  setReviewChanged?: Dispatch<SetStateAction<boolean>>
 }
