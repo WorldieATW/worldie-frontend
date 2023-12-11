@@ -4,12 +4,19 @@ import { useAuthContext } from '@contexts'
 import { useRouter } from 'next/router'
 import { Button } from '@chakra-ui/react'
 import toast from 'react-hot-toast'
+import { Dispatch, SetStateAction } from 'react'
 
-interface ReviewCardProps {
+interface ReviewModalProps {
   onClose: () => void
+  reviewChanged?: boolean
+  setReviewChanged?: Dispatch<SetStateAction<boolean>>
 }
 
-export const ReviewCard: React.FC<ReviewCardProps> = ({ onClose }) => {
+export const ReviewModal: React.FC<ReviewModalProps> = ({
+  onClose,
+  reviewChanged, // Corrected destructuring
+  setReviewChanged, // Corrected destructuring
+}) => {
   const { httpFetch } = useAuthContext()
   const router = useRouter()
   const { id } = router.query
@@ -57,7 +64,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ onClose }) => {
       if (response) {
         toast.success(response.responseMessage)
       } else {
-        const statusCode = error?.data.statusCode
+        const statusCode = error?.statusCode
         const msg = String(error?.message)
         if (statusCode === 400) {
           toast.error(msg)
@@ -72,6 +79,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ onClose }) => {
     } finally {
       setIsLoading(false)
       resetForm()
+      if (setReviewChanged) {
+        setReviewChanged(!reviewChanged)
+      }
       onClose()
     }
   }

@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '@contexts'
 import { GetReviewResponse } from './interface'
-// import { Review } from '@models'
+import { Review } from '@models'
 import { Button, Spinner } from '@chakra-ui/react'
 import { useModal } from 'src/components/hooks/useModal'
-import { ReviewCard, BackButton } from '@elements'
+import { ReviewCard, BackButton, Skeleton, ReviewModal } from '@elements'
 import { useRouter } from 'next/router'
 
 export const ReviewModule = () => {
   const { httpFetch } = useAuthContext()
   const router = useRouter()
-  // const [reviews, setReviews] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { isOpen, openModal, closeModal } = useModal()
   const { nama } = router.query
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [selectedRating, setSelectedRating] = useState('')
+  const [reviewChanged, setReviewChanged] = useState<boolean>(false)
 
   const fetchReviews = async (
     id: string,
@@ -45,43 +46,42 @@ export const ReviewModule = () => {
         url: `review/${id}?${filtersUrl}`,
       })
 
-      if (error) {
-        console.error('Error fetching data:', error)
-        // Handle error scenario (e.g., show an error message)
-      } else {
-        if ((response?.totalCount || 0) < 10) {
+      if (response) {
+        if (response?.totalCount < 10) {
           setTotalPages(1)
         } else {
-          setTotalPages(Math.ceil((response?.totalCount || 0) / 10))
+          setTotalPages(Math.ceil(response?.totalCount / 10))
         }
-        // setReviews(response?.reviews || [])
+        setReviews(response?.reviews)
+      } else {
+        console.error('Error fetching data:', error)
       }
     } catch (err) {
       console.error('An unexpected error occurred:', err)
-      // Handle the unexpected error (e.g., show an error message)
     } finally {
-      setIsLoading(false) // End loading regardless of success or error
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    // Destructure parameters from router.query and provide types
-    const { id, page, size, rating } = router.query as {
+    const { id } = router.query as {
       id: string
-      page?: string
-      size?: string
-      rating?: string
     }
 
     if (id) {
-      fetchReviews(
-        id,
-        page ?? '1', // Provide default values or handle undefined cases
-        size ?? '10',
-        rating
-      )
+      fetchReviews(id, '1', '10')
     }
-  }, [router.query])
+  }, [])
+
+  useEffect(() => {
+    const { id } = router.query as {
+      id: string
+    }
+
+    if (id) {
+      fetchReviews(id, '1', '10')
+    }
+  }, [reviewChanged])
 
   useEffect(() => {
     const page = currentPage
@@ -164,6 +164,23 @@ export const ReviewModule = () => {
                   </select>
                 </div>
               </div>
+              <div className="flex flex-col">
+                {isLoading ? (
+                  <div className="px-7">
+                    <Skeleton height={400} />
+                  </div>
+                ) : (
+                  reviews.map((review) => (
+                    <ReviewCard
+                      key={review.id}
+                      review={review}
+                      reviewChanged={reviewChanged}
+                      setReviewChanged={setReviewChanged}
+                      isDetail={false}
+                    />
+                  ))
+                )}
+              </div>
               <div className="pagination-controls gap-3 flex flex-row items-center justify-center">
                 {currentPage !== 1 ? (
                   <button
@@ -203,9 +220,13 @@ export const ReviewModule = () => {
               aria-hidden="true"
             ></div>
 
-            {/* ReviewCard as the main modal content with no extra shadow */}
+            {/* ReviewModal as the main modal content with no extra shadow */}
             <div className="relative">
-              <ReviewCard onClose={closeModal} />
+              <ReviewModal
+                onClose={closeModal}
+                reviewChanged={reviewChanged}
+                setReviewChanged={setReviewChanged}
+              />
             </div>
           </div>
         </>
