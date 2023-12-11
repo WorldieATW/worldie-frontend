@@ -44,6 +44,13 @@ export const RegisterModule = () => {
 
     if (response) {
       const { accessToken } = response
+
+      if (!accessToken) {
+        toast.success('Register sukses! Harap tunggu persetujuan admin.')
+        router.push('/')
+        return
+      }
+
       localStorage.setItem(
         process.env.NEXT_PUBLIC_TOKEN_NAME as string,
         accessToken
@@ -54,7 +61,13 @@ export const RegisterModule = () => {
       setUser(key)
 
       toast.success('Register sukses!')
-      router.push('/home')
+      if (role === 'TRAVELER') {
+        router.push('/home')
+      } else if (role === 'ADMIN') {
+        router.push('/dashboard/admin')
+      } else {
+        router.push('/home')
+      }
     } else {
       const statusCode = error?.statusCode
       const message = error?.message
