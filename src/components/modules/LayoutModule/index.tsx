@@ -14,7 +14,7 @@ export const LayoutModule: React.FC<ComponentPropsWithoutRef<'main'>> = ({
     if (isAuthenticated) return
 
     router.push('/login')
-    toast.error("Must be logged in to access this page")
+    toast.error('Must be logged in to access this page')
   }
 
   useEffect(() => {

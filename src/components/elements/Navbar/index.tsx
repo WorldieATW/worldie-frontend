@@ -30,7 +30,10 @@ export const Navbar = () => {
               Home
             </button>
           </Link>
-          <button className="bg-[#4468E2] py-2 px-7 rounded-3xl font-bold drop-shadow-lg" onClick={handleLogout}>
+          <button
+            className="bg-[#4468E2] py-2 px-7 rounded-3xl font-bold drop-shadow-lg"
+            onClick={handleLogout}
+          >
             Sign Out
           </button>
         </div>
