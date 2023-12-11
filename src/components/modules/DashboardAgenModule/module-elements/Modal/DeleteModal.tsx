@@ -26,7 +26,7 @@ export const DeleteModal: React.FC<ModalProps> = ({
       router.back()
     } else {
       const statusCode = error?.statusCode
-      if (statusCode === 404) {
+      if (statusCode === 400) {
         toast.error('Sorry, the Asset is not found on Worldie')
       } else if (statusCode === 403) {
         toast.error(
