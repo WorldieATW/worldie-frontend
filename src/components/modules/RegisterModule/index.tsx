@@ -129,14 +129,15 @@ export const RegisterModule = () => {
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
               />
-              <CustomInput
-                label="Role"
-                labelClassName="text-[#7C838A] font-medium"
-                inputClassName="text-[#7C838A]"
-                placeholder="Choose your Role"
+              <label className="text-[#7C838A] font-medium">Role</label>
+              <select
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-              />
+                className="dropdown-rating text-center text-[#7C838A] border-2 rounded-lg py-0.5"
+              >
+                <option value="TRAVELER">TRAVELER</option>
+                <option value="AGEN">AGEN</option>
+              </select>
               <CustomInput
                 label="Password"
                 labelClassName="text-[#7C838A] font-medium"
