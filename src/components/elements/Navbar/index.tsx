@@ -19,7 +19,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div className="flex justify-between w-full bg-gradient-to-b from-[#1E1E1E] to-[#000000]/[0] to-[82.29%] items-center px-14 py-4">
+    <div className="flex justify-between absolute top-0 left-0 w-full bg-gradient-to-b from-[#1E1E1E] to-[#000000]/[0] to-[82.29%] items-center px-14 py-4">
       <Link href="/home">
         <span className="font-paytone text-2xl text-white">Worldie</span>
       </Link>
