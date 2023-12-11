@@ -27,8 +27,8 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
   })
 
   useEffect(() => {
-    setAgenId(user?.id ? user.id : '')
-  }, [user?.id])
+    setAgenId(user ? user.id : '')
+  }, [user])
 
   useEffect(() => {
     if (tipe === 'TRANSPORTASI') setJenisPenginapan('')
@@ -82,6 +82,7 @@ export const AsetUsahaSection: React.FC<AsetUsahaSectionProps> = ({ tipe }) => {
 
       <div className="flex flex-wrap gap-6">
         {asetUsaha.map((aset, index) => {
+          if (aset.agenId !== user?.id) return <></>
           return (
             <AsetUsahaCard
               key={index}
