@@ -49,10 +49,10 @@ export const ReviewModule = () => {
         console.error('Error fetching data:', error)
         // Handle error scenario (e.g., show an error message)
       } else {
-        if (response?.totalCount < 10) {
+        if ((response?.totalCount || 0) < 10) {
           setTotalPages(1)
         } else {
-          setTotalPages(Math.ceil(response?.totalCount / 10))
+          setTotalPages(Math.ceil((response?.totalCount || 0) / 10))
         }
         // setReviews(response?.reviews || [])
       }
