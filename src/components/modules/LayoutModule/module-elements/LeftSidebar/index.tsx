@@ -38,9 +38,7 @@ export const LeftSidebar: React.FC = () => {
       {user && (
         <>
           <div className="flex flex-col gap-y-8">
-            <Link href={`${user.role === 'TRAVELER' ? '/home' : ''}`}>
-              <Image alt="logo" src="/logo.svg" width={30} height={30} />
-            </Link>
+            <Image alt="logo" src="/logo.svg" width={30} height={30} />
             <div className="flex flex-col gap-y-6">
               {user.role === 'TRAVELER' && (
                 <LeftSideBarContent
