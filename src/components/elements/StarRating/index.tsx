@@ -1,16 +1,18 @@
 import React from 'react'
+import { useState } from 'react'
 
 interface StarRatingProps {
   rating: number
   setRating: (rating: number) => void
 }
-
 export const StarRating: React.FC<StarRatingProps> = ({
   rating,
   setRating,
 }) => {
+  const [hover, setHover] = useState<number>(0)
+
   return (
-    <div className="flex">
+    <div className="flex justify-center gap-2">
       {[...Array(5)].map((_, index) => {
         const ratingValue = index + 1
         return (
@@ -18,14 +20,16 @@ export const StarRating: React.FC<StarRatingProps> = ({
             type="button"
             key={ratingValue}
             className={`hover:text-yellow-500 transition-colors duration-150 ${
-              ratingValue <= rating ? 'text-yellow-500' : 'text-gray-300'
+              ratingValue <= (hover || rating)
+                ? 'text-yellow-500'
+                : 'text-gray-300'
             }`}
             onClick={() => setRating(ratingValue)}
+            onMouseEnter={() => setHover(ratingValue)}
+            onMouseLeave={() => setHover(0)}
             aria-label={`Rate ${ratingValue} out of 5 stars`}
-            onMouseEnter={() => setRating(ratingValue)}
-            onMouseLeave={() => setRating(rating)}
           >
-            <span className="text-lg leading-none hover:text-2xl transition-transform duration-150">
+            <span className="text-4xl leading-none transition-transform duration-150">
               &#9733;
             </span>
           </button>

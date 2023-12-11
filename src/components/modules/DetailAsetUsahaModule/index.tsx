@@ -11,6 +11,8 @@ import { useAsetUsahaApi } from 'src/components/hooks/useAsetUsahaApi'
 import { useModal } from 'src/components/hooks/useModal'
 import { DeleteModal } from '../DashboardAgenModule/module-elements/Modal/DeleteModal'
 import { UpdateModal } from '../DashboardAgenModule/module-elements/Modal/UpdateModal'
+import NextLink from 'next/link'
+import { Link } from '@chakra-ui/react'
 
 export const DetailAsetUsahaModule: React.FC = () => {
   const [rating, setRating] = useState(0)
@@ -91,6 +93,15 @@ export const DetailAsetUsahaModule: React.FC = () => {
                   <span>{rating}/5</span>
                   <IoIosStar size={20} className="fill-royal" />
                   <span>({asetUsahaById.daftarReview.length})</span>
+                  <Link
+                    as={NextLink}
+                    href={`/review/${
+                      asetUsahaById.id
+                    }?nama=${encodeURIComponent(asetUsahaById.nama)}`}
+                    color="blue.500"
+                  >
+                    See review
+                  </Link>
                 </div>
               )}
             </div>

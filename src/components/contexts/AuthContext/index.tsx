@@ -60,9 +60,11 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
         headers: headers,
       })
 
+      console.log(data)
       responseObj.response = data
     } catch (error: any) {
-      responseObj.error = error.response.data
+      console.log(error)
+      responseObj.error = error.response
     }
 
     setIsLoading(false)

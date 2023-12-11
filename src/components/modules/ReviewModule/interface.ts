@@ -1,5 +1,6 @@
-import { WorldPost } from '@models'
+import { Review } from '@models'
 
-export interface GetDetailWorldPostResponse {
-  worldPost: WorldPost
+export interface GetReviewResponse {
+  totalCount: number
+  reviews: Review[]
 }
