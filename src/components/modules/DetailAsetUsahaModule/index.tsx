@@ -36,7 +36,7 @@ export const DetailAsetUsahaModule: React.FC = () => {
     const rating =
       allReviews.reduce((prev: number, curr) => curr.rating + prev, 0) /
       allReviews.length
-    setRating(rating ? rating : 0)
+    setRating(rating ? parseFloat(rating.toFixed(1)) : 0)
   }
 
   useEffect(() => {

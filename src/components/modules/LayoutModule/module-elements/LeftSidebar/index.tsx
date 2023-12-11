@@ -3,7 +3,6 @@ import { useAuthContext } from '@contexts'
 import { MdDashboard } from 'react-icons/md'
 import { LeftSideBarContent } from './LeftSideBarContent'
 import { BiSolidHomeCircle } from 'react-icons/bi'
-import { RiUser3Fill } from 'react-icons/ri'
 import Link from 'next/link'
 import { UserMenu } from './UserMenu'
 import { LEFT_SIDE_BAR_MENUS } from '../../constant'
@@ -31,7 +30,7 @@ export const LeftSidebar: React.FC = () => {
         )
       }
     }
-    return <LeftSideBarContent link="" icon={<RiUser3Fill />} text="Profile" />
+    return <></>
   }
 
   return (
