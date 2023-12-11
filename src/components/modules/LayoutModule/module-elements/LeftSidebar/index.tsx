@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useAuthContext } from '@contexts'
 import { MdDashboard } from 'react-icons/md'
 import { LeftSideBarContent } from './LeftSideBarContent'
+import { BiSolidHomeCircle } from 'react-icons/bi'
 import { RiUser3Fill } from 'react-icons/ri'
 import Link from 'next/link'
 import { UserMenu } from './UserMenu'
@@ -15,8 +16,8 @@ export const LeftSidebar: React.FC = () => {
       if (user.role === 'AGEN') {
         return (
           <LeftSideBarContent
-            link=""
-            Icon={MdDashboard}
+            link="/dashboard/agen"
+            icon={<MdDashboard />}
             text="Dashboard Agen"
           />
         )
@@ -24,35 +25,48 @@ export const LeftSidebar: React.FC = () => {
         return (
           <LeftSideBarContent
             link="/dashboard/admin"
-            Icon={MdDashboard}
+            icon={<MdDashboard />}
             text="Dashboard Admin"
           />
         )
       }
     }
-    return <LeftSideBarContent link="" Icon={RiUser3Fill} text="Profile" />
+    return <LeftSideBarContent link="" icon={<RiUser3Fill />} text="Profile" />
   }
 
   return (
     <aside className="font-poppins text-black font-bold p-10 justify-between flex-shrink-0 bg-white h-screen border border-r-black/10">
-      <div className="flex flex-col gap-y-8">
-        <Link href="/home">
-          <Image alt="logo" src="/logo.svg" width={30} height={30} />
-        </Link>
-        <div className="flex flex-col gap-y-6">
-          {LEFT_SIDE_BAR_MENUS.map(({ link, Icon, text }) => (
-            <LeftSideBarContent link={link} Icon={Icon} text={text} />
-          ))}
-          {renderProfileMenu()}
-        </div>
-        <Link href="">
-          <button className="rounded-full bg-royal w-full py-2 text-white shadow hover:bg-opacity-90">
-            Post
-          </button>
-        </Link>
-      </div>
+      {user && (
+        <>
+          <div className="flex flex-col gap-y-8">
+            <Link href={`${user.role === 'TRAVELER' ? '/home' : ''}`}>
+              <Image alt="logo" src="/logo.svg" width={30} height={30} />
+            </Link>
+            <div className="flex flex-col gap-y-6">
+              {user.role === 'TRAVELER' && (
+                <LeftSideBarContent
+                  link="/home"
+                  icon={<BiSolidHomeCircle />}
+                  text="Home"
+                />
+              )}
+              {LEFT_SIDE_BAR_MENUS.map((menu, index) => (
+                <LeftSideBarContent key={index} {...menu} />
+              ))}
+              {renderProfileMenu()}
+            </div>
+            {user.role === 'TRAVELER' && (
+              <Link href="/home">
+                <button className="rounded-full bg-royal w-full py-2 text-white shadow hover:bg-opacity-90">
+                  Post
+                </button>
+              </Link>
+            )}
+          </div>
 
-      {user && <UserMenu />}
+          <UserMenu />
+        </>
+      )}
     </aside>
   )
 }

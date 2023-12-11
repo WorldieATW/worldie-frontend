@@ -1,31 +1,14 @@
-import { useAuthContext } from '@contexts'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { WiStars } from 'react-icons/wi'
-import { TopDestinasiWisata, TopDestinasiWisataProps } from './interface'
 import { Trending } from './Trending'
+import { useLayoutContext } from '@contexts'
 
 export const RightSidebar: React.FC = () => {
-  const { httpFetch } = useAuthContext()
-  const [topDestinasiWisata, setTopDestinasiWisata] = useState<
-    TopDestinasiWisata[]
-  >([])
-
-  const fetchData = async () => {
-    const { response, error } = await httpFetch<TopDestinasiWisataProps>({
-      method: 'get',
-      url: 'aset-usaha/top',
-    })
-
-    if (error) {
-      console.error('Error fetching data:', error)
-    } else {
-      setTopDestinasiWisata(response?.topDestinasiWisata || [])
-    }
-  }
+  const { refreshTrending, topDestinasiWisata } = useLayoutContext()
 
   useEffect(() => {
-    fetchData()
+    refreshTrending()
   }, [])
 
   return (
@@ -50,7 +33,7 @@ export const RightSidebar: React.FC = () => {
         </div>
 
         <Link
-          href=""
+          href="/tourist-attraction"
           className="font-popins font-semibold text-sm flex justify-center items-center px-4 py-3 text-royal hover:underline"
         >
           See more
