@@ -34,11 +34,18 @@ export const LoginModule = () => {
       )
 
       const { key } = parseJwt(accessToken)
+      const role = key.role
       setIsAuthenticated(true)
       setUser(key)
 
       toast.success('Login sukses!')
-      router.push('/home')
+      if (role === 'TRAVELER') {
+        router.push('/home')
+      } else if (role === 'ADMIN') {
+        router.push('/dashboard/admin')
+      } else {
+        router.push('/dashboard/agen')
+      }
     } else {
       const statusCode = error?.statusCode
       if (statusCode === 401 || statusCode === 400) {
